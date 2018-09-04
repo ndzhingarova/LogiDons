@@ -148,7 +148,7 @@
                         <div class="row">
                             <div class="col-sm-5" >
                                 <div class="modal fade  modal-merci" tabindex="-1"role="dialog" aria-labelledby="mySmallModalLabel">
-                                    <div class="modal-dialog modal-sm">
+                                    <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
                                             <div class="alert alert-warning" role="alert">
                                                 <span  class="alert-link text-info" > <p >
@@ -178,41 +178,89 @@
                                 </div>
                             </div>
                         </section>
+                        <section>
+                        <div id="modal-modifier-don" class="modal fade  bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" ng-controller="studentController">
+                            <div class="modal-dialog  modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                          <h4 class="modal-title text-danger">Modifier Don</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="">
+                                                <div class="form-group row">
+                                                <table class="table table-dark">
+                                                    <thead>
+                                                        <th>Email</th>
+                                                        <th>Valider</th>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="col-sm-10">
+                                                                    <input class="form-control form-control-sm" type="email" placeholder="Enter Email">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="col-sm-2">
+                                                                     <input type="button" class="btn btn-success" value="soumettre">
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                   
+                                                  
+                                                </div>
+                                            
+                                            
+                                            </form>
+                        
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
                     </div>              
                   
             <!-- ASIDE RIGTH -->
             <div class="col-sm-2">
                 <aside>
-                    <div class="view overlay">
-                        
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-modifier-don">Modifier Don</button>
+                    <div class="view overlay">                
                         <div class="mask flex-center rgba-green-slight">
                                 <h4  class="text-success">Comment proposer un don </h4>
                                 <ul class="text-info" >
                                     <li><strong>Entrer votre email</strong>
-                                    <div class="view overlay"> 
-                                        <?php 
-                                        require_once('./includes/imageAleatoireEmail.php');
-                                        if (isset($imageSize)) { ?> 
-                                           <img src="<?php echo  $selectedImageEmail ;  ?>" alt="image aléatoire"  class="img-fluid "<?php echo $imageSize[3]; ?>>
-                                           <div class="mask flex-center rgba-green-light">
-                                              <p id="caption" class="text-danger"><?php echo $caption; ?></p>
+                                        <div class="view overlay"> 
+                                            <?php 
+                                            require_once('./includes/imageAleatoireEmail.php');
+                                            if (isset($imageSize)) { ?> 
+                                            <img src="<?php echo  $selectedImageEmail ;  ?>" alt="image aléatoire"  class="img-fluid "<?php echo $imageSize[3]; ?>>
+                                            <div class="mask flex-center rgba-green-light">
+                                                <p id="caption" class="text-danger"><?php echo $caption; ?></p>
                                             </div> 
-                                        <?php } ?>  
-                                 </div>
-                    </div></li>
-                                    
-                                    <li class="text-infos"><strong>Faire un dons</strong>
-                                    <div class="view overlay"> 
-                                    <?php 
-                                    require_once('./includes/imageAleatoireFaire.php');
-                                    if (isset($imageSize)) { ?> 
-                                        <img src="<?php echo  $selectedImageFaire ;  ?>" alt="image aléatoire"  class="img-fluid "<?php echo $imageSize[3]; ?>>
-                                        <div class="mask flex-center rgba-green-light">
-                                        <p id="caption" class="text-danger"><?php echo $caption; ?></p>
-                                        </div> 
-                                    <?php } ?> 
-                                </div>
-                                   </li>
+                                            <?php } ?>  
+                                        </div>
+                                    </li>
+                                    <li><strong>Faire un dons</strong>
+                                        <div class="view overlay"> 
+                                            <?php 
+                                            require_once('./includes/imageAleatoireFaire.php');
+                                            if (isset($imageSize)) { ?> 
+                                                <img src="<?php echo  $selectedImageFaire ;  ?>" alt="image aléatoire"  class="img-fluid "<?php echo $imageSize[3]; ?>>
+                                                <div class="mask flex-center rgba-green-light">
+                                                <p id="caption" class="text-danger"><?php echo $caption; ?></p>
+                                                </div> 
+                                            <?php } ?> 
+                                        </div>
+                                    </li>
                                 </ul>
                                 <img src="https://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img%20(12).jpg" class="img-fluid " alt="">
                             </p>
