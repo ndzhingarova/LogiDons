@@ -9,7 +9,7 @@ class DonnateurDAO
 		try
 		{
 			$conn  = Database::getInstance();
-            $pstmt = $conn->prepare("INSERT INTO  tbl_donnateurs (DONNATEUR_NOM ,DONNATEUR_EMAIL ,DONNATEUR_ADRESS, DONNATEUR_TEL, MOT_DE_PASSE, DATE_CREATION)
+            $pstmt = $conn->prepare("INSERT INTO donnateur (DONNATEUR_NOM ,DONNATEUR_EMAIL ,DONNATEUR_ADRESS, DONNATEUR_TEL, MOT_DE_PASSE, DATE_CREATION)
 			                         VALUES                  (:znom,         :zcourriel,      :zadresse,        :ztel,         :zmotDP,      now())");
 			$pstmt->execute(array('znom'      => $x1,
 								  'zcourriel' => $x2,
@@ -23,22 +23,47 @@ class DonnateurDAO
 			throw $e;
 		}
 	}
-	public function findEmail($courriel) // utile
+	public function findDonateurByEmail($courriel) // utile
 	{
-	           // cette fonction nous renvoie le nombre d'enregistrements
-	            // lié à cet email (0 ou 1 ).
+	        // cette fonction nous renvoie le nombre d'enregistrements
+	        // lié à cet email (0 ou 1 ).
 		$db = Database::getInstance();
-		$pstmt = $db->prepare("SELECT * FROM  tbl_donnateurs WHERE DONNATEUR_EMAIL = :x");
-		$pstmt->execute(array(':x' => $courriel));	
-		$count = $pstmt->rowCount();
+		$pstmt = $db->prepare("SELECT * FROM membre WHERE COURRIEL = :x");
+		$pstmt->execute(array(':x' => $courriel));
+		$result = $pstmt->fetch(PDO::FETCH_OBJ);
+		if ($result)
+		{
+			$c = new Donnateur();
+			$c->loadFromObject($result);
+			$pstmt->closeCursor();
+			return $c;
+		}
 		$pstmt->closeCursor();
 		Database::close();
-		return $count;
+		return NULL;
+	}
+	public function findDonateurInscrit($courriel,$MotDePasse) 
+	{	
+        $db = Database::getInstance();
+
+		$pstmt = $db->prepare("SELECT * FROM donnateur WHERE COURRIEL = :x AND MOT_DE_PASSE = :y");
+		$pstmt->execute(array(':x' => $courriel, ':y' => $MotDePasse));		
+		$result = $pstmt->fetch(PDO::FETCH_OBJ);		
+		if ($result)
+		{
+			$c = new Membre();
+			$c->loadFromObject($result);
+			$pstmt->closeCursor();
+			return $c;
+		}
+		$res->closeCursor();
+		Database::close();
+		return NULL;
 	}	
 	public function getTot_Donnateurs() // utile
 	{
 		$db = Database::getInstance();
-		$pstmt = $db->prepare("SELECT * FROM  tbl_donnateurs");
+		$pstmt = $db->prepare("SELECT * FROM donnateur");
 		$pstmt->execute();		
 		$count = $pstmt->rowCount();								
 		$pstmt->closeCursor();

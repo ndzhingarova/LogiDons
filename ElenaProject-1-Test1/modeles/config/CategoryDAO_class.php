@@ -9,7 +9,7 @@ class CategorieDAO
 		try
 		{
 			$conn  = Database::getInstance();
-            $pstmt = $conn->prepare(" INSERT INTO tbl_category (CATEGORY_NAME, CATEGORY_DESC) VALUES(:znom, :zdesc) ");
+            $pstmt = $conn->prepare(" INSERT INTO categorie (NOM, DESCRIPTION) VALUES(:znom, :zdesc) ");
             $pstmt->execute( array('znom' => $nom, 'zdesc' =>$desc) );
             $pstmt->closeCursor();
 			Database::close();			
@@ -22,7 +22,7 @@ class CategorieDAO
 	public function findCatByName($nom) //utile
 	{
 		$db = Database::getInstance();
-		$pstmt = $db->prepare("SELECT * FROM tbl_category WHERE CATEGORY_NAME = :x");
+		$pstmt = $db->prepare("SELECT * FROM categorie WHERE NOM = :x");
 		$pstmt->execute(array('x' => $nom));	
 		$count = $pstmt->rowCount();
 		$pstmt->closeCursor();
@@ -33,7 +33,7 @@ class CategorieDAO
 	{
 		$db = Database::getInstance();
 
-		$pstmt = $db->prepare("SELECT * FROM tbl_category WHERE CATEGORY_ID = :x ");
+		$pstmt = $db->prepare("SELECT * FROM categorie WHERE ID = :x ");
 		$pstmt->execute(array('x' => $id));		
 		$result = $pstmt->fetch(PDO::FETCH_OBJ);		
 		if ($result)
@@ -49,8 +49,8 @@ class CategorieDAO
 	}
 	public function catUpdate($nom, $desc, $id) //utile
 	{  		
-		$request = "UPDATE tbl_category SET CATEGORY_NAME = '".$nom."', CATEGORY_DESC = '".$desc."'".
-				   " WHERE CATEGORY_ID = '".$id."'";
+		$request = "UPDATE categorie SET NOM = '".$nom."', DESCRIPTION = '".$desc."'".
+				   " WHERE ID = '".$id."'";
 		try
 		{
 			$conn  = Database::getInstance();          
@@ -67,7 +67,7 @@ class CategorieDAO
 	{
 		$db = Database::getInstance();
 
-		$pstmt = $db->prepare(" SELECT * FROM tbl_category ");
+		$pstmt = $db->prepare(" SELECT * FROM categorie ");
 		$pstmt->execute();		
 		$count = $pstmt->rowCount();								
 		$pstmt->closeCursor();
@@ -79,7 +79,7 @@ class CategorieDAO
 		try 
 		{
 			$conn = Database::getInstance();			
-            $res = $conn->prepare("SELECT * FROM tbl_category");
+            $res = $conn->prepare("SELECT * FROM categorie");
             $res->execute();
             $rows = $res->fetchAll();		  
 			$res->closeCursor();
@@ -92,7 +92,7 @@ class CategorieDAO
 	}	
 	public function deleteCat($id) // utile
 	{
-		$request = "DELETE FROM tbl_category WHERE CATEGORY_ID = '".$id."'";
+		$request = "DELETE FROM categorie WHERE ID = '".$id."'";
 		try
 		{
 			$conn = Database::getInstance();

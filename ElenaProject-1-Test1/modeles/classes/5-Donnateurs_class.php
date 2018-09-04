@@ -8,10 +8,8 @@ class Donnateur
 	private $adresse;
 	private $tel;
 	private $mdp;
-	private $etat;
 	private $dateCreation;
     
-
     public function __construct(){ }
 	
 	public function getid()            { return $this->id; }	
@@ -26,20 +24,17 @@ class Donnateur
 	public function setTel($value)     { $this->tel = $value; }
 	public function getMdp()           {return $this->mdp;}
 	public function setMdp($value)     {$this->mdp = $value;}
-	public function getEtat()          {return $this->etat;}
-	public function setEtat($value)    {$this->etat = $value;}
 	public function getDt()            {return $this->dateCreation;}
 	public function setDt($value)      {$this->dateCreation = $value;}
     	
 	public function loadFromObject($x)
 	{
-		$this->id           = $x->DONNATEUR_ID;
-		$this->nom          = $x->DONNATEUR_NOM;
-		$this->courriel     = $x->DONNATEUR_EMAIL;
-		$this->adresse      = $x->DONNATEUR_ADRESS	;
-		$this->tel          = $x->DONNATEUR_TEL;
+		$this->id           = $x->ID_DONATEUR;
+		$this->nom          = $x->NOM;
+		$this->courriel     = $x->COURRIEL;
+		$this->adresse      = $x->ADRESSE;
+		$this->tel          = $x->TELEPHONE;
 		$this->mdp          = $x->MOT_DE_PASSE;
-		$this->etat         = $x->DONNATEUR_ETAT;
 		$this->dateCreation = $x->DATE_CREATION;		
     }	
 }

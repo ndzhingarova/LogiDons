@@ -9,7 +9,7 @@ class MembreDAO
 		try
 		{
 			$conn  = Database::getInstance();
-            $pstmt = $conn->prepare("INSERT INTO tbl_membres (MEMBRE_NAME ,MEMBRE_EMAIL ,MEMBRE_ADRESS, MEMBRE_TEL, MOT_DE_PASSE, DATE_CREATION)
+            $pstmt = $conn->prepare("INSERT INTO membre (MEMBRE_NAME ,MEMBRE_EMAIL ,MEMBRE_ADRESS, MEMBRE_TEL, MOT_DE_PASSE, DATE_CREATION)
 			                         VALUES                  (:znom,      :zcourriel,   :zadresse,      :ztel,      :zmotDP,      now())");
 			$pstmt->execute(array('znom'      => $x1,
 								  'zcourriel' => $x2,
@@ -27,8 +27,26 @@ class MembreDAO
 	{
 		$db = Database::getInstance();
 
-		$pstmt = $db->prepare("SELECT * FROM tbl_membres WHERE MEMBRE_EMAIL = :x AND MOT_DE_PASSE = :y");
+		$pstmt = $db->prepare("SELECT * FROM membre WHERE MEMBRE_EMAIL = :x AND MOT_DE_PASSE = :y");
 		$pstmt->execute(array(':x' => $courriel, ':y' => $MotDePasse));		
+		$result = $pstmt->fetch(PDO::FETCH_OBJ);		
+		if ($result)
+		{
+			$c = new Membre();
+			$c->loadFromObject($result);
+			$pstmt->closeCursor();
+			return $c;
+		}
+		$res->closeCursor();
+		Database::close();
+		return NULL;
+	}
+	public function findMembreByEmail($courriel)
+	{
+		$db = Database::getInstance();
+
+		$pstmt = $db->prepare("SELECT * FROM membre WHERE COURRIEL = :x");
+		$pstmt->execute(array(':x' => $courriel));		
 		$result = $pstmt->fetch(PDO::FETCH_OBJ);		
 		if ($result)
 		{
@@ -46,7 +64,7 @@ class MembreDAO
 	           // cette fonction nous renvoie le nombre d'enregistrements
 	            // lié à cet email (0 ou 1 ).
 		$db = Database::getInstance();
-		$pstmt = $db->prepare("SELECT * FROM tbl_membres WHERE MEMBRE_EMAIL = :x");
+		$pstmt = $db->prepare("SELECT * FROM membre WHERE MEMBRE_EMAIL = :x");
 		$pstmt->execute(array(':x' => $courriel));	
 		$count = $pstmt->rowCount();
 		$pstmt->closeCursor();
@@ -56,7 +74,7 @@ class MembreDAO
 	public function getTot_Membres() // utile
 	{
 		$db = Database::getInstance();
-		$pstmt = $db->prepare(" SELECT * FROM  tbl_membres");
+		$pstmt = $db->prepare(" SELECT * FROM  membre");
 		$pstmt->execute();		
 		$count = $pstmt->rowCount();								
 		$pstmt->closeCursor();
@@ -65,7 +83,7 @@ class MembreDAO
 	public function tot_Pending_Membres() // utile
 	{
 		$db = Database::getInstance();
-		$pstmt = $db->prepare(" SELECT * FROM  tbl_membres WHERE GROUP_ID = 4 AND PENDING = 0  ");
+		$pstmt = $db->prepare(" SELECT * FROM  membre WHERE GROUP_ID = 4 AND PENDING = 0  ");
 		$pstmt->execute();		
 		$count = $pstmt->rowCount();								
 		$pstmt->closeCursor();
@@ -76,7 +94,7 @@ class MembreDAO
 		try 
 		{
 			$conn = Database::getInstance();			
-            $res = $conn->prepare("SELECT * FROM tbl_membres");
+            $res = $conn->prepare("SELECT * FROM membre");
             $res->execute();
             $rows = $res->fetchAll();		  
 			$res->closeCursor();
@@ -91,7 +109,7 @@ class MembreDAO
 	{
 		$db = Database::getInstance();
 
-		$pstmt = $db->prepare("SELECT * FROM tbl_membres WHERE MEMBRE_ID = :x ");
+		$pstmt = $db->prepare("SELECT * FROM membre WHERE MEMBRE_ID = :x ");
 		$pstmt->execute(array(':x' => $id));		
 		$result = $pstmt->fetch(PDO::FETCH_OBJ);		
 		if ($result)
@@ -104,6 +122,25 @@ class MembreDAO
 		}
 		$pstmt->closeCursor();
 		return NULL;
+	}
+	public function getLePremier()
+	{
+		try
+		{   
+			$conn  = Database::getInstance();
+			$pstmt = $conn->prepare(" SELECT MEMBRE_ID FROM membre WHERE GROUP_ID = 3 AND ACTIF = 1 ORDER BY MEMBRE_ID ASC");
+			$pstmt->execute();
+			$rows = $pstmt->fetchAll(); // pour avoir un tableau a 2 dimensions qui contient le resultat de la requete
+			return $rows[0][0];
+			
+			$pstmt->closeCursor();
+		    Database::close();
+		}
+		catch(Exception $e)
+		{
+			echo "Failed : ". $e->getMessage();
+		}	
+	
 	}
 }
 

@@ -1,9 +1,10 @@
 <?php
 if (!ISSET($_SESSION)) 
     session_start();
-require_once('../modeles/classes/6-LesDons_class.php');
+
 require_once('../modeles/config/DonsDAO_class.php');
 require_once('../modeles/config/Format.php');
+require_once("../modeles/config/MembreDAO_class.php");
 
 // verification si la methode d'envoi est faite par le formulaire
 if($_SERVER['REQUEST_METHOD'] == 'POST')
@@ -11,29 +12,41 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     // recuperation des donnees envoyees
     $format = new Format();
     
-    $Don_ID     = substr(md5(time()), 0, 10);
-    $nom        = $format->validation($_POST['nomDon']);
-    $catDon     = $format->validation($_POST['catDon']);
-    $DescDon    = $format->validation($_POST['DescDon']);
-    $ModeLivr   = $format->validation($_POST['ModeLivr']);
-    $montantDon = $format->validation($_POST['montantDon']);
-    $dtPrm      = $format->validation($_POST['dateDon']);
-    $img        = $_FILES['img']['name'];
-    $nomDntr    = $format->validation($_POST['nomDontr']);
-    $courriel   = $format->validation($_POST['courriel']);
-    $tel        = $format->validation($_POST['tel']);
-    $adresse    = $format->validation($_POST['adresse']);
+    $nom        = $format->validation($_POST['nomDon']);     // nom du don
+    $catDon     = $format->validation($_POST['catDon']);     // categorie du don
+    $DescDon    = $format->validation($_POST['DescDon']);    // description du don
+    $ModeLivr   = $format->validation($_POST['ModeLivr']);   // mode de livraison du don
+    $montantDon = $format->validation($_POST['montantDon']); // montant du don
+    $dtPrm      = $format->validation($_POST['dateDon']);    // date promise de la livraison
+    $img        = $_FILES['img']['name'];                    // nom de l'image envoyée
 
-    if(!isset($_SESSION['userId']))  $idDonnateur = 0000;
-    if(empty($montantDon))           $montantDon  = "null";
-    if(empty($dtPrm))                $dtPrm       =  null;
-    if(empty($img))                  $img         = "aucune image fournie."; 
+    $nomDntr    = $format->validation($_POST['nomDontr']);   // nom du donnateur
+    $courriel   = $format->validation($_POST['courriel']);   // courriel du donnateur
+    $tel        = $format->validation($_POST['tel']);        // telephone du donnateur
+    $adresse    = $format->validation($_POST['adresse']);    // adresse du donnateur
 
-  // echo $Don_ID."<br>";echo $nom."<br>";echo $catDon."<br>";echo $DescDon."<br>";echo $ModeLivr."<br>";
-  // echo $montantDon."<br>";echo $dtPrm."<br>";echo $img."<br>";echo $nomDntr."<br>";echo $courriel."<br>";
-  // echo $tel."<br>";echo $adresse."<br>";
-    $dao = new Dons_DAO();
-    $dao->createDon($Don_ID,$idDonnateur,$catDon,$nom,$DescDon,$ModeLivr,$montantDon,$dtPrm,$img,$nomDntr,$courriel,$adresse,$tel);
+    if(empty($img))  $img = "aucune image fournie."; 
+
+    // vérifier si le donateur existe déja dans la BDD
+    $membreDao = new MembreDAO();   
+    $donateur = $membreDao->findMembreByEmail($courriel);
+   // echo $courriel."<br>";                              // ok
+   // echo $donateur->getid()."<br>";                     // ok
+   // echo Membre::$ID_EMPLOYE_TRAITEUR["actuel"]."<br>"; // ok
+    if($donateur)  // si le donateur existe deja
+      {
+         // echo "le donateur existe.<br>";
+          // on recupere son ID et on insere seulement son nouveau don
+          $donateurID = $donateur->getid(); 
+          $dao = new Dons_DAO();
+          $dao->createDonAvecIdDonnateur($donateurID,$catDon);
+      }
+    else           // si le donnateur n'existe pas
+      {
+         // echo "le donateur n'existe pas dans la BDD.";
+      }
+    //$dao = new Dons_DAO();
+    //$dao->createDon($Don_ID,$idDonnateur,$catDon,$nom,$DescDon,$ModeLivr,$montantDon,$dtPrm,$img,$nomDntr,$courriel,$adresse,$tel);
    // header('Location: ../vues/CreateDon.php');
     //exit();
 }

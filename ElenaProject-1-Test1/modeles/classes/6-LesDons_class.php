@@ -15,7 +15,8 @@ class LesDons {
 	private $dateReception;
 	private $dateRefu;
 	private $photoDon;
-	
+	private $id_membre;
+
 	public function __construct() { }	
 
 	public function getID()                { return $this->id_don; }	
@@ -46,6 +47,8 @@ class LesDons {
 	public function setDtRefu($value)      { $this->dateRefu = $value; }
 	public function getPhoto()             { return $this->photoDon; }	
 	public function setPhoto($value)       { $this->photoDon = $value; }
+	public function getMembreID()          { return $this->id_membre; }	
+	public function setMembreId($value)    { $this->id_membre = $value; }
 
 	public function loadFromObject($x)
 	{
@@ -63,6 +66,7 @@ class LesDons {
 		$this->dateReception    = $x->DATE_RECU;
 		$this->dateRefu         = $x->DATE_REFU;
 		$this->photoDon         = $x->PHOTO_DON;
+		$this->id_membre        = $x->MEMBRE_ID;
 	}	
 }
 
