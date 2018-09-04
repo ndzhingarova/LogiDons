@@ -12,7 +12,7 @@ array('file' => 'agro6','caption' => $descAgro)
 );
 
     $iAgro = rand(0, count( $imagesAgroalimentaire)-1);
- $selectedImageAgro = "images/imagesAgroalimentaire/{$imagesAgroalimentaire[$iAgro]['file']}.jpg";
+ $selectedImageAgro = "PageAccueilSiteDon/images/imagesAgroalimentaire/{$imagesAgroalimentaire[$iAgro]['file']}.jpg";
  $caption = $imagesAgroalimentaire[$iAgro]['caption']; 
  if (file_exists($selectedImageAgro) && is_readable($selectedImageAgro)) {
     $imageSize = getimagesize($selectedImageAgro);

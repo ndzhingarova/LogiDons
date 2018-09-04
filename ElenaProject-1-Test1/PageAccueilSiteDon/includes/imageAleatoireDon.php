@@ -9,7 +9,7 @@
     );
     
     $iDon = rand(0, count( $imagesDon)-1);
-    $selectedImageDon = "images/imagesDon/{$imagesDon[$iDon ]['file']}.jpg";
+    $selectedImageDon = "PageAccueilSiteDon/images/imagesDon/{$imagesDon[$iDon ]['file']}.jpg";
     $caption = $imagesDon[$iDon]['caption']; 
     
     /*L'instruction if utilise deux fonctions, file_exists () et is_readable (), 
