@@ -13,7 +13,7 @@
    array('file' => 'electro8','caption' => $descElec)
    );
    $iElectro = rand(0, count( $imagesElectro )-1);
-   $selectedImageElectro = "images/imagesElectro/{$imagesElectro[$iElectro]['file']}.jpg";
+   $selectedImageElectro = "PageAccueilSiteDon/images/imagesElectro/{$imagesElectro[$iElectro]['file']}.jpg";
    $caption = $imagesElectro[$iElectro]['caption'];
    
    if (file_exists( $selectedImageElectro) && is_readable( $selectedImageElectro)) {

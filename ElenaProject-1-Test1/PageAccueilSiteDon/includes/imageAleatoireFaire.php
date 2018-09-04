@@ -14,7 +14,7 @@ array('file' => 'faire5','caption' => $descFaire)
 );
 
 $iFaire = rand(0, count( $imagesFaire)-1);
-$selectedImageFaire = "images/imagesFaireDon/{$imagesFaire[$iFaire ]['file']}.jpg";
+$selectedImageFaire = "PageAccueilSiteDon/images/imagesFaireDon/{$imagesFaire[$iFaire ]['file']}.jpg";
 $caption = $imagesFaire[$iFaire]['caption']; 
 
 if (file_exists($selectedImageFaire) && is_readable($selectedImageFaire)) {

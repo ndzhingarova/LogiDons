@@ -13,7 +13,7 @@ array('file' => 'email7','caption' => $descEmail)
 );
 
 $iEmail = rand(0, count( $imagesEmail)-1);
-$selectedImageEmail = "images/imagesEmail/{$imagesEmail[$iEmail ]['file']}.jpg";
+$selectedImageEmail = "PageAccueilSiteDon/images/imagesEmail/{$imagesEmail[$iEmail ]['file']}.jpg";
 $caption = $imagesEmail[$iEmail]['caption']; 
 
 if (file_exists($selectedImageEmail) && is_readable($selectedImageEmail)) {

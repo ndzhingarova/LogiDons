@@ -26,7 +26,6 @@
 				<a class="navbar-brand" href="<?php echo $cheminAccueil ?>"><span class="glyphicon glyphicon-home"></span>Acceuil</a>
 			</div>			
 			<div class="collapse navbar-collapse" id="app-nav">			
- 			     
 			    <?php
 					if($_SESSION['courriel'] == 'admin@admin.ca' )
 					  {
@@ -68,6 +67,7 @@
 		</div>
     </div>
 </div>
+
 
 
 

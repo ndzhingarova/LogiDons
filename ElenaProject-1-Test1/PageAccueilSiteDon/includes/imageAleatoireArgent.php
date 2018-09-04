@@ -13,7 +13,7 @@ array('file'    => 'argent7','caption' => $descArg)
 );
 
 $iArg = rand(0, count( $imagesArgent)-1);
-$selectedImageArgent = "images/imagesArgent/{$imagesArgent[$iArg]['file']}.jpg";
+$selectedImageArgent = "PageAccueilSiteDon/images/imagesArgent/{$imagesArgent[$iArg]['file']}.jpg";
 $caption = $imagesArgent[$iArg]['caption']; 
 
 if (file_exists($selectedImageArgent) && is_readable($selectedImageArgent)) {

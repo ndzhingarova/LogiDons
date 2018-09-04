@@ -12,7 +12,7 @@ array('file' => 'vetement6','caption' => $descVet)
 );
 
 $iVet = rand(0, count( $imagesVetement)-1);
-$selectedImageVet = "images/imagesVetement/{$imagesVetement[$iVet]['file']}.jpg";
+$selectedImageVet = "PageAccueilSiteDon/images/imagesVetement/{$imagesVetement[$iVet]['file']}.jpg";
 $caption = $imagesVetement[$iVet]['caption']; 
 
 if (file_exists($selectedImageVet ) && is_readable($selectedImageVet )) {

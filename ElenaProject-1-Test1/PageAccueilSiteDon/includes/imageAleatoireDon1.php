@@ -17,7 +17,7 @@ $imagesDon1 = array(
     );
     
     $iDon1 = rand(0, count( $imagesDon1)-1);
-    $selectedImageDon1 = "images/imagesDon1/{$imagesDon1[$iDon1 ]['file']}.jpg";
+    $selectedImageDon1 = "PageAccueilSiteDon/images/imagesDon1/{$imagesDon1[$iDon1 ]['file']}.jpg";
     $caption = $imagesDon1[$iDon1]['caption']; 
     
     if (file_exists($selectedImageDon1) && is_readable($selectedImageDon1)) {

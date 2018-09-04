@@ -14,11 +14,9 @@ if (!ISSET($_SESSION))
     include('vues/header.php');
     include('vues/navBar.php');   
 ?>
-
-<h1 class="text-center">La page Accueil</h1>
-
+<?php
+ include('PageAccueilSiteDon/pageAccueil.php');
+?>
 <script src="ficiers-js/jquery-1.12.1.min.js"></script> 
 <script src="ficiers-js/bootstrap.min.js"></script>
 <script src="ficiers-js/Page-admin-js.js"></script>
-</body>
-</html>
