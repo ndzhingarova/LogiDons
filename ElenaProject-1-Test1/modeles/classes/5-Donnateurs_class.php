@@ -29,7 +29,7 @@ class Donnateur
     	
 	public function loadFromObject($x)
 	{
-		$this->id           = $x->ID_DONATEUR;
+		$this->id           = $x->ID;
 		$this->nom          = $x->NOM;
 		$this->courriel     = $x->COURRIEL;
 		$this->adresse      = $x->ADRESSE;

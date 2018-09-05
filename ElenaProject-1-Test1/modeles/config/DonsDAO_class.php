@@ -9,6 +9,26 @@ require_once("../modeles/config/MembreDAO_class.php");
 
 class Dons_DAO
 {
+	public function createDonateur($nomDonateur, $courriel, $telephone, $adresse){
+		$db = Database::getInstance();
+		$pstmt = $db->prepare("INSERT INTO membre (NOM ,COURRIEL ,ADRESSE, TELEPHONE) VALUES 
+		(:nom, :courriel, :adresse, :telephone)");	
+		try
+		{
+			$donateurResponse =  $pstmt->execute(array(':nom' => $nomDonateur,
+											':courriel' => $courriel,
+											':adresse' => $telephone,
+											':telephone' => $adresse
+											));
+			
+			return $donateurResponse;
+		}
+		catch(PDOException $e)
+		{
+			throw $e;
+		}
+	}
+
 	public function createDonAvecIdDonnateur($donateurID,$catDon,$nom,$DescDon,$qtt,$modeLivr,$montantDon,$dtPrm,$img) 
 		{
 			try

@@ -68,6 +68,29 @@ class LesDons {
 		$this->photoDon         = $x->PHOTO_DON;
 		$this->id_membre        = $x->MEMBRE_ID;
 	}	
+
+	public function loadFromArray($tab)
+	{
+		
+		$this->id_don           = $tab["DON_ID"];
+		$this->id_donnateur     = $tab["DONNATEUR_ID"];
+		$this->don_category     = $tab["DON_CATEGORY"];
+		$this->nom_don          = $tab["NOM_DON"];
+		$this->desc_don         = $tab["DESC_DON"];
+		$this->mode_livraison   = $tab["MODE_LIVRAISON"];
+		$this->datePromesse     = $tab["DATE_PROMESSE"];
+		$this->montant_don      = $tab["MANTANT_DON"];
+		$this->datePromesse     = $tab["DATE_PROMESSE"];
+		$this->datePromise      = $tab["DATE_PROMISE"];
+		$this->dateAnnulation   = $tab["DATE_ANNULATION"];
+		$this->dateAcceptation  = $tab["DATE_ACCEPTATION"];
+		$this->dateReception    = $tab["DATE_RECU"];
+		$this->dateRefu         = $tab["DATE_REFU"];
+		$this->photoDon         = $tab["PHOTO_DON"];
+		$this->id_membre        = $tab["MEMBRE_ID"];
+	}
+
+
 }
 
 ?>

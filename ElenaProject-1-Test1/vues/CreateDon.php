@@ -2,7 +2,7 @@
 <?php 
 if (!ISSET($_SESSION)) 
     session_start();
-    require_once("../modeles/config/CategoryDao_class.php");
+    require_once("../modeles/config/CategoryDao.class.php");
     $pageTitle = 'CreateUser';
     include('header.php');
     include('navBar.php'); 
@@ -30,7 +30,7 @@ if (!ISSET($_SESSION))
                                           </div>
                                           <div class="form-group">
                                              <label class="control-label">Telephone</label>
-                                             <input type="number" name="tel" class="form-control"  >
+                                             <input type="text" name="tel" class="form-control"  >
                                           </div>
                                           <div class="form-group">
                                              <label class="control-label">Adresse</label>
