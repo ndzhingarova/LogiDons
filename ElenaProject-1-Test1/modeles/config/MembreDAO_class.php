@@ -123,25 +123,7 @@ class MembreDAO
 		$pstmt->closeCursor();
 		return NULL;
 	}
-	public function getLePremier()
-	{
-		try
-		{   
-			$conn  = Database::getInstance();
-			$pstmt = $conn->prepare(" SELECT MEMBRE_ID FROM membre WHERE GROUP_ID = 3 AND ACTIF = 1 ORDER BY MEMBRE_ID ASC");
-			$pstmt->execute();
-			$rows = $pstmt->fetchAll(); // pour avoir un tableau a 2 dimensions qui contient le resultat de la requete
-			return $rows[0][0];
-			
-			$pstmt->closeCursor();
-		    Database::close();
-		}
-		catch(Exception $e)
-		{
-			echo "Failed : ". $e->getMessage();
-		}	
 	
-	}
 }
 
 ?>

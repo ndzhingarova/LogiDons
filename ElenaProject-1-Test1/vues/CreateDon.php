@@ -7,7 +7,7 @@ if (!ISSET($_SESSION))
     include('header.php');
     include('navBar.php'); 
     ?>       
-        <div class="container  col-md-10  col-md-offset-1" style="top:30px">
+        <div class="container  col-md-10  col-md-offset-1" style="top:10px">
             <div class="panel panel-primary">
                 <div class="panel-heading text-center">Donner un Don</div>
                     <div class="panel-body">
@@ -22,19 +22,19 @@ if (!ISSET($_SESSION))
                                       <div class='panel-body'>
                                           <div class="form-group">
                                              <label class="control-label">Nom du Donnateur</label>
-                                             <input type="text" name="nomDontr" class="form-control"  required>                                             
+                                             <input type="text" name="nomDontr" class="form-control"  >                                             
                                           </div>
                                           <div class="form-group">
                                              <label class="control-label">Email</label>
-                                             <input type="email" name="courriel" class="form-control"  required>
+                                             <input type="email" name="courriel" class="form-control"  >
                                           </div>
                                           <div class="form-group">
                                              <label class="control-label">Telephone</label>
-                                             <input type="number" name="tel" class="form-control"  required>
+                                             <input type="number" name="tel" class="form-control"  >
                                           </div>
                                           <div class="form-group">
                                              <label class="control-label">Adresse</label>
-                                             <textarea class="form-control" name="adresse" rows="3"  required></textarea>
+                                             <textarea class="form-control" name="adresse" rows="3"  ></textarea>
                                           </div>
                                       </div>
                                   </div>
@@ -54,8 +54,12 @@ if (!ISSET($_SESSION))
                                             <input type="text" name="nomDon" class="form-control">
                                         </div>
                                         <div class="form-group">
+                                            <label class="control-label">Quantite</label>
+                                            <input type="number" name="qttDon" class="form-control">
+                                        </div>
+                                        <div class="form-group">
                                             <label class="control-label">Categorie du Don</label>                          
-                                            <select name="catDon" class="form-control" required>
+                                            <select name="catDon" class="form-control" >
                                             <option></option>
                                                     <?php
                                                         $catdao = new CategorieDAO();       
@@ -69,15 +73,15 @@ if (!ISSET($_SESSION))
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">Description</label>
-                                            <textarea class="form-control" name="DescDon" rows="3"  required></textarea>
+                                            <textarea class="form-control" name="DescDon" rows="3" ></textarea>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">Mode de livraison</label>
-                                            <input type="text" name="ModeLivr" class="form-control"  required>
+                                            <input type="text" name="ModeLivr" class="form-control"  >
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">Montant du Don</label>
-                                            <input type="number" name="montantDon" class="form-control"  required>
+                                            <input type="number" name="montantDon" class="form-control"  >
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">Photo du Don(si disponible)</label>                     
@@ -85,7 +89,7 @@ if (!ISSET($_SESSION))
                                         </div>                                      
                                         <div class="form-group">
                                             <label class="control-label">Date Promise</label>                     
-                                            <input type="date" name="dateDon" class="form-control" required >                           
+                                            <input type="date" name="dateDon" class="form-control"  >                           
                                         </div>
                                       </div>
                                   </div>

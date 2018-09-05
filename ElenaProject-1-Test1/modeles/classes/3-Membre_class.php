@@ -11,7 +11,7 @@ class Membre
 	private       $grId;
 	private       $etat;
 	private       $dateCreation;
-    public static $leTour;
+    private       $num_jeton;
 
 	public function __construct()      {}
 	
@@ -33,12 +33,12 @@ class Membre
 	public function setEtat($value)    { $this->etat = $value; }
 	public function getDt()            { return $this->dateCreation; }
 	public function setDt($value)      { $this->dateCreation = $value; }
-	//public function getLetour()        { return $this->leTour; }	
-	//public function setLetour($value)  { $this->leTour = $value; }
+	public function getNumJeton()      { return $this->num_jeton; }	
+	public function setNumJeto($value) { $this->num_jeton = $value; }
 	
 	public function loadFromObject($x)
 	{
-		$this->id           = $x->MEMBRE_ID;
+		$this->id           = $x->ID;
 		$this->nom          = $x->NOM;
 		$this->courriel     = $x->COURRIEL;
 		$this->adresse      = $x->ADRESSE;
@@ -46,7 +46,8 @@ class Membre
 		$this->mdp          = $x->MOT_DE_PASSE;
 		$this->grId         = $x->GROUP_ID;
 		$this->etat         = $x->ACTIF;
-		$this->dateCreation = $x->DATE_CREATION;		
+		$this->dateCreation = $x->DATE_CREATION;
+		$this->num_jeton    = $x->NUM_JETON;
     }	
 }
 ?>
