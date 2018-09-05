@@ -2,9 +2,11 @@
 if (!ISSET($_SESSION)) 
     session_start();
 
-require_once('../modeles/config/DonsDAO_class.php');
+require_once('../modeles/config/DonnateurDAO.class.php');
+require_once('../modeles/config/DonsDAO.class.php');
 require_once('../modeles/config/Format.php');
-require_once("../modeles/config/MembreDAO_class.php");
+require_once("../modeles/config/MembreDAO.class.php");
+require_once("../modeles/classes/OutilCourriel.php");
 
 // verification si la methode d'envoi est faite par le formulaire
 if($_SERVER['REQUEST_METHOD'] == 'POST')
@@ -26,33 +28,51 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     $tel        = $format->validation($_POST['tel']);        // telephone du donnateur
     $adresse    = $format->validation($_POST['adresse']);    // adresse du donnateur
 
-    if(empty($img))  $img = "aucune image fournie."; 
+    //if(empty($img))  
+    //    $img = "aucune image fournie."; 
 
     // vérifier si le donateur existe déja dans la BDD
-    $membreDao = new MembreDAO();   
+   $membreDao = new MembreDAO();   
     $donateur = $membreDao->findMembreByEmail($courriel);
-  
+    
     if($donateur)  // si le donateur existe deja
       {
           // on recupere son ID et on insere seulement son don
-          $donateurID = $donateur->getid(); 
-          $dao = new Dons_DAO();
-          $dao->createDonAvecNouveauDonnateur($donateurID,$catDon,$nom,$DescDon,$qtt,$modeLivr,$montantDon,$dtPrm,$img);
+          //$donateurID = $donateur->getid(); 
+         // $dao = new DonsDAO();
+         
+          //$dao->createDonAvecIdDonnateur($donateurID,$catDon,$nom,$DescDon,$qtt,$modeLivr,$montantDon,$dtPrm,$img);
+          $dao = new DonnateurDAO();
+          $myDonateur = $dao->findDonateurByEmail($courriel);
+          $secondDao = new DonsDAO();
+          $emp_id = $secondDao->AttibuerEmploye();
+          $secondDao->createDon($myDonateur->getid(), $emp_id,$catDon,$nom,$DescDon,$qtt, $modeLivr,$montantDon, $dtPrm, $img);
+            //echo "yraaaa";
+           // OutilCourriel::envoyer($courriel,$nomDntr,$myDonateur->getid());
+           header('Location: ../vues/merci.php');
+           exit();
       }
-    else           // si le donnateur n'existe pas
+    else           
       {
-          echo "le donateur n'existe pas dans la BDD.";
-          $dao = new Dons_DAO();
-          $dao->createDonAvecIdDonnateur
-          ($nomDntr,$courriel,$tel,$adresse,$catDon,$nom,$DescDon,$qtt,$modeLivr,$montantDon,$dtPrm,$img);
-      }
-}
-else
-{
-    // la methode d'envoi n'est pas POST,
-    // lui retourner la page Accueil ou la page de connection( choisir ).
-    header('Location: ../vues/CreateDon.php');
-    exit();
-}
+          //echo "le donateur n'existe pas dans la BDD.";
+          $dao = new DonnateurDAO();
+         
+          if($dao->createDonateurSansReg($nomDntr,$courriel,$tel,$adresse)){
+              //echo "yraaaa";
+              $myDonateur = $dao->findDonateurByEmail($courriel);
+              $secondDao = new DonsDAO();
+              $emp_id = $secondDao->AttibuerEmploye();
+              $secondDao->createDon($myDonateur->getid(), $emp_id,$catDon,$nom,$DescDon,$qtt, $modeLivr,$montantDon, $dtPrm, $img);
+            //  if($secondDao->createDon($myDonateur->getid(), $emp_id,$catDon,$nom,$DescDon,$qtt, $modeLivr,$montantDon, $dtPrm, $img))
+                //echo "yraaaa";
+               // OutilCourriel::envoyer($courriel,$nomDntr,$myDonateur->getid());
+          } else {
+              echo "Erruer";
+          }
+          
+  
+    header('Location: ../vues/merci.php');
+   exit();
+}}
 
 ?>

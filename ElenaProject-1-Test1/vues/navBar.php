@@ -9,7 +9,7 @@
   }	 	 
   else
   {
-	  $cheminAccueil = '../index-0.php';
+	  $cheminAccueil = '../index.php';
 	  $chemin = '';	  
   }    
 ?>
