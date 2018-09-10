@@ -2,15 +2,16 @@
 //if (!ISSET($_SESSION))		
 //    session_start();    
 
-require_once("../modeles/classes/2-Database_class.php");
-require_once("../modeles/classes/6-LesDons_class.php");
-require_once("../modeles/classes/3-Membre_class.php");
+require_once("../modeles/classes/2-Database.class.php");
+require_once("../modeles/classes/6-LesDons.class.php");
+require_once("../modeles/classes/3-Membre.class.php");
 require_once("../modeles/config/MembreDAO.class.php");
 
 class DonsDAO
 {
 
-		public function createDon($donateurID,$emp_id,$catDon,$nom,$DescDon,$qtt,$modeLivr,$montantDon,$dtPrm,$img){
+	public function createDon($donateurID,$emp_id,$catDon,$nom,$DescDon,$qtt,$modeLivr,$montantDon,$dtPrm,$img)
+		{
 			try
 			{
 				$conn  = Database::getInstance();
@@ -35,7 +36,8 @@ class DonsDAO
 			}
 		}
 
-		public function AttibuerEmploye(){
+	public function AttibuerEmploye()
+		{
 			$conn  = Database::getInstance();
 			try
 			{ 
@@ -81,7 +83,8 @@ class DonsDAO
 			return $id_Emp_Suivant;
 		}
 
-		public function trouverDonsDonateur($id){
+	public function trouverDonsDonateur($id)
+		{
 			$cnx = Database::getInstance();
 			try {
 			$liste = Array();//new Liste();
@@ -103,8 +106,7 @@ class DonsDAO
 			}	
     	}	
 	
-
-		public function createDonAvecIdDonnateur($donateurID,$catDon,$nom,$DescDon,$qtt,$modeLivr,$montantDon,$dtPrm,$img) 
+	public function createDonAvecIdDonnateur($donateurID,$catDon,$nom,$DescDon,$qtt,$modeLivr,$montantDon,$dtPrm,$img) 
 		{
 			try
 			{   
@@ -214,15 +216,48 @@ class DonsDAO
 				$conn->rollBack();
 				echo "Failed : ". $e->getMessage();
 			}
-		}		
+		}	
 
+	public function findAllDons()		
+	    {
+			try 
+			{
+				$conn = Database::getInstance();			
+				$res = $conn->prepare("SELECT * FROM don");
+				$res->execute();
+				$rows = $res->fetchAll();		  
+				$res->closeCursor();
+				Database::close();
+				return $rows;//return un tableau de 2 dimensions, ou chaque ligne est un tableau 
+			} catch (PDOException $e) {
+				print "Error!: " . $e->getMessage() . "<br/>";
+				return $rows;
+			}	
+		}
 
+	public function getTot_Dons() // utile
+		{
+			$db = Database::getInstance();
+	
+			$pstmt = $db->prepare(" SELECT * FROM don ");
+			$pstmt->execute();		
+			$count = $pstmt->rowCount();								
+			$pstmt->closeCursor();
+			Database::close();
+			return $count;;
+		}	
 
-
-
-
-
+	public function get_Somme_Dons()	
+	{ 
+		$db = Database::getInstance();			
+		$pstmt = $db->prepare(" select SUM(MONTANT) AS total FROM don ");
+		$pstmt->execute();
+		$laSomme = 0;
+		$row = $pstmt->Fetch(PDO::FETCH_ASSOC);
+		$laSomme = $row['total'];		
+		return $laSomme;
 	}
+}
 
 
 ?>

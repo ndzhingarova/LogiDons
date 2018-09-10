@@ -4,7 +4,11 @@ if (!ISSET($_SESSION))
     session_start();
     require_once("../modeles/config/CategoryDao.class.php");
     $pageTitle = 'CreateUser';
-    include('header.php');
+    include('header.php');?>
+
+    <script src="../ficiers-js/jquery-1.12.1.min.js"></script>
+
+    <?php
     include('navBar.php'); 
     ?>       
         <div class="container  col-md-10  col-md-offset-1" style="top:10px">
@@ -17,25 +21,52 @@ if (!ISSET($_SESSION))
         Debut de la saisie des donnees sur le Donnateur
 ------ --------------------------------------------------------------------------------------------------------------- -->                          
                               <div class='col-md-6'>
-                                  <div class='panel panel-info'>
+                                  <div class='panel panel-info'>                                
                                       <div class='panel-heading text-center'>infos du donnateur</div>
                                       <div class='panel-body'>
+                        <!-- ---------- Debut Div Compagnie --------------------------------------->          
+                                          <div id="divCompagnie" class="form-group"  >
+                                             <label class="control-label">Nom de l'entreprise</label>
+                                             <input type="text" name="nomCompagnie" class="form-control"  >                                             
+                                          </div>
+                        <!-- ----------- Fin Div Compagnie ----------------------------------------->                  
                                           <div class="form-group">
-                                             <label class="control-label">Nom du Donnateur</label>
+                                             <label class="control-label"><span id="nomContact">Nom du donateur</span></label>
                                              <input type="text" name="nomDontr" class="form-control"  >                                             
                                           </div>
+                        <!-- ------------------------------------------------------------------- -->                  
                                           <div class="form-group">
                                              <label class="control-label">Email</label>
                                              <input type="email" name="courriel" class="form-control"  >
                                           </div>
+                        <!-- ------------------------------------------------------------------- -->                  
                                           <div class="form-group">
                                              <label class="control-label">Telephone</label>
                                              <input type="text" name="tel" class="form-control"  >
+                                          </div> 
+                        <!-- ------------------------------------------------------------------- -->
+                                          <div class="adresseDonateur form-group form-group-lg">
+                                            <label class="control-label">Adresse</label>
+                                            <div class="divAdresse">
+                                                <span>numero civic </span> <input type="number" name="numCivic"><br>
+                                                <span>nom de la rue</span> <input type="text" name="nomRue"><br>
+                                                <span>ville        </span> <input type="text" name="ville"><br>
+                                                <span>code postale </span> <input type="text" name="codePostale"><br>
+                                                <span>province</span>
+                                                <select name="province">
+                                                    <option value="Alberta">Alberta</option><option value="Colombie-Britannique">Colombie-Britannique</option>
+                                                    <option value="Île-du-Prince-Édouard">Île-du-Prince-Édouard</option><option value=" Manitoba"> Manitoba</option>
+                                                    <option value="Nouveau-Brunswick">Nouveau-Brunswick</option><option value="Nouvelle-Écosse">Nouvelle-Écosse</option>
+                                                    <option value="Ontario">Ontario</option><option value="Québec">Québec</option>
+                                                    <option value="Saskatchewan">Saskatchewan</option><option value="Terre-Neuve-et-Labrador">Terre-Neuve-et-Labrador</option>
+                                                </select>
+                                            </div>
                                           </div>
-                                          <div class="form-group">
-                                             <label class="control-label">Adresse</label>
-                                             <textarea class="form-control" name="adresse" rows="3"  ></textarea>
-                                          </div>
+                        <!---------------------------------------------------------------- -->
+                                          <div class="divCheck form-group" id="checkIfCompagnie">                         
+                                             <input id="checkCompagnie" type="checkbox" name="checkCompagnie">                              
+                                          </div> 
+                                          <label class="control-label">Je suis une entreprise</label>                                   
                                       </div>
                                   </div>
                               </div> <!-- autocomplete="off" required -->
@@ -53,10 +84,12 @@ if (!ISSET($_SESSION))
                                             <label class="control-label">Nom du Don</label>
                                             <input type="text" name="nomDon" class="form-control" >
                                         </div>
+                        <!-- ------------------------------------------------------------------- -->                
                                         <div class="form-group">
                                             <label class="control-label">Quantite</label>
                                             <input type="number" name="qttDon" class="form-control">
                                         </div>
+                        <!-- ------------------------------------------------------------------- -->                
                                         <div class="form-group">
                                             <label class="control-label">Categorie du Don</label>                          
                                             <select name="catDon" class="form-control" >
@@ -71,26 +104,41 @@ if (!ISSET($_SESSION))
                                                     ?>   
                                             </select>                  
                                         </div>
+                        <!-- ------------------------------------------------------------------- -->                
                                         <div class="form-group">
                                             <label class="control-label">Description</label>
                                             <textarea class="form-control" name="DescDon" rows="3" ></textarea>
                                         </div>
-                                        <div class="form-group">
+                        <!-- ------------------------------------------------------------------- -->                
+                                        <div class="form-group form-group-lg">
                                             <label class="control-label">Mode de livraison</label>
-                                            <input type="text" name="ModeLivr" class="form-control"  >
+                                            <div style="border:1.5px solid #e6e6e6;border-radius:5px; padding-top:5px;padding-left:30px;">
+                                            <div>
+                                                <input id="id1" type="radio" name="ModeLivr" value="je vais deposer au centre">
+                                                <label for="id1">je vais deposer au centre</label>
+                                            </div>
+                                            <div>
+                                                <input id="id2" type="radio" name="ModeLivr" value="vous devez passer chez moi">
+                                                <label for="id2">vous devez passer chez moi</label>
+                                            </div>
+                                            </div>
                                         </div>
+                        <!-- ------------------------------------------------------------------- -->                    
                                         <div class="form-group">
                                             <label class="control-label">Montant du Don</label>
                                             <input type="number" name="montantDon" class="form-control"  >
                                         </div>
+                        <!-- ------------------------------------------------------------------- -->                    
                                         <div class="form-group">
                                             <label class="control-label">Photo du Don(si disponible)</label>                     
                                             <input type="file" name="img" class="form-control" >                           
-                                        </div>                                      
+                                        </div>
+                        <!-- ------------------------------------------------------------------- -->                    
                                         <div class="form-group">
                                             <label class="control-label">Date Promise</label>                     
                                             <input type="date" name="dateDon" class="form-control"  >                           
                                         </div>
+                        <!-- ------------------------------------------------------------------- -->                    
                                       </div>
                                   </div>
                               </div>
@@ -106,7 +154,18 @@ if (!ISSET($_SESSION))
                 </div><!--end div panel heading -->
             </div><!--end div panel default -->
         </div><!--end div container -->
-
-    <?php include('footer.php') ?>
-
-
+<script>
+   $(document).ready(function()
+    {
+        $('#divCompagnie').hide();
+        $('#checkIfCompagnie').on('click', function() 
+            {
+                $('#divCompagnie').toggle(500);
+                if( $('input[name="checkCompagnie"]').is(':checked') ) 			     	
+                    $('#nomContact').text('Nom du Contact');
+                else               				   
+                    $('#nomContact').text('Nom du donateur');
+            });			  
+    });
+</script>
+    <?php include('footer.php'); ?>

@@ -1,6 +1,6 @@
 <?php
-require_once("../modeles/classes/2-Database_class.php");
-require_once("../modeles/classes/5-Donnateurs_class.php");
+require_once("../modeles/classes/2-Database.class.php");
+require_once("../modeles/classes/5-Donnateurs.class.php");
 
 class DonnateurDAO
 {	
@@ -24,7 +24,8 @@ class DonnateurDAO
 		}
 	}
 */
-	public function createDonateurSansReg($nomDonateur, $courriel, $telephone, $adresse){
+	public function createDonateurSansReg($nomDonateur, $courriel, $telephone, $adresse)
+	{
 		$db = Database::getInstance();
 		$pstmt = $db->prepare("INSERT INTO membre (NOM ,COURRIEL ,ADRESSE, TELEPHONE, GROUP_ID) VALUES 
 		(:nom, :courriel, :adresse, :telephone, 5 )");	
@@ -64,6 +65,7 @@ class DonnateurDAO
 		Database::close();
 		return NULL;
 	}
+
 	public function findDonateurInscrit($courriel,$MotDePasse) 
 	{	
         $db = Database::getInstance();
@@ -81,16 +83,18 @@ class DonnateurDAO
 		$res->closeCursor();
 		Database::close();
 		return NULL;
-	}	
+	}
+
 	public function getTot_Donnateurs() // utile
 	{
 		$db = Database::getInstance();
-		$pstmt = $db->prepare("SELECT * FROM donnateur");
+		$pstmt = $db->prepare("SELECT * FROM membre WHERE GROUP_ID = 5");
 		$pstmt->execute();		
 		$count = $pstmt->rowCount();								
 		$pstmt->closeCursor();
 		return $count;
 	}
+	
 	
 }
 

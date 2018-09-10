@@ -1,7 +1,7 @@
 <?php
      if (!ISSET($_SESSION)) 
      session_start(); 
-     if($_SESSION['courriel'] != "admin@admin.ca")    
+     if(!ISSET($_SESSION['admin']))    
         {
            header('Location: connexion.php');
            exit();
@@ -20,7 +20,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">Modifier une Categorie</div>
                 <div class="panel-body">
-                    <form method="post" action="../controleurs/Controle_UpdateCategory.php">
+                    <form method="post" action="../controleurs/Controle_UpdateMembre.php">
                         
                         <div class="form-group">
                             <label class="control-label">ID :</label>
@@ -44,17 +44,17 @@
 
                         <div class="form-group">
                             <label class="control-label">Adresse :</label>
-                            <textarea name="desCat" class="form-control" rows="2" required ><?php echo $cat->getAdresse(); ?></textarea>
+                            <textarea name="adresse" class="form-control" rows="2" required ><?php echo $membre->getAdresse(); ?></textarea>
                         </div>
                         
                         <div class="form-group">
                             <label class="control-label">Activation :</label>
-                            <input type="text" name="etatMemb" value="<?php echo $membre->getEtat(); ?>" class="form-control" required>
+                            <input type="text" name="etatMemb" value="<?php echo $membre->getEtat()==1 ?>" class="form-control" required>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label">Statut :</label>
-                            <input type="text" name="statMemb" value="<?php echo $membre->getGroupId(); ?>" class="form-control" required>
+                            <input type="text" name="statMemb" value="<?php echo 'employe' ?>" class="form-control" required>
                         </div>
 
                         <div>

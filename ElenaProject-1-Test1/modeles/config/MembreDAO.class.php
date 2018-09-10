@@ -1,6 +1,6 @@
 <?php
-require_once("../modeles/classes/2-Database_class.php");
-require_once("../modeles/classes/3-Membre_class.php");
+require_once("../modeles/classes/2-Database.class.php");
+require_once("../modeles/classes/3-Membre.class.php");
 
 class MembreDAO
 {	
@@ -90,6 +90,38 @@ class MembreDAO
 		$pstmt->closeCursor();
 		return $count;
 	}
+	public function get_Volentaires()
+	{
+		try 
+		{
+			$conn = Database::getInstance();			
+            $res = $conn->prepare("SELECT ID, NOM, ACTIF FROM membre WHERE GROUP_ID = 4");
+            $res->execute();
+            $rows = $res->fetchAll();		  
+			$res->closeCursor();
+			Database::close();
+			return $rows;
+		} catch (PDOException $e) {
+		    print "Error!: " . $e->getMessage() . "<br/>";
+		    return $rows;
+		}	
+	}
+	public function get_Emp_traiteurs()
+	{
+		try 
+		{
+			$conn = Database::getInstance();			
+            $res = $conn->prepare("SELECT ID, NOM, ACTIF FROM membre WHERE GROUP_ID = 3");
+            $res->execute();
+            $rows = $res->fetchAll();		  
+			$res->closeCursor();
+			Database::close();
+			return $rows;
+		} catch (PDOException $e) {
+		    print "Error!: " . $e->getMessage() . "<br/>";
+		    return $rows;
+		}	
+	}
 	public function findAll_Membres() // cette methode fait un select * de toute la table, et renvoie 
 	{                         // toutes les donnees dans un tableau a 2 dimensions.                      
 		try 
@@ -110,13 +142,13 @@ class MembreDAO
 	{
 		$db = Database::getInstance();
 
-		$pstmt = $db->prepare("SELECT * FROM membre WHERE MEMBRE_ID = :x ");
+		$pstmt = $db->prepare("SELECT * FROM membre WHERE ID = :x ");
 		$pstmt->execute(array(':x' => $id));		
 		$result = $pstmt->fetch(PDO::FETCH_OBJ);		
 		if ($result)
 		{
 			$membre = new Membre();
-			$c->loadFromObject($result);
+			$membre->loadFromObject($result);
 			$pstmt->closeCursor();
 			Database::close();
 			return $membre;
@@ -124,7 +156,52 @@ class MembreDAO
 		$pstmt->closeCursor();
 		return NULL;
 	}
-	
+	public function updateMembre($nom, $email,$adresse, $tel,  $etat, $statut, $id) //utile
+	{  	
+		try
+		{
+			$conn  = Database::getInstance();	
+			$pstmt = $conn->prepare(" UPDATE membre SET NOM = ?, COURRIEL = ?, ADRESSE = ?, TELEPHONE = ?, ACTIF = ?, GROUP_ID = ? WHERE ID = ? ");
+			$pstmt->execute(array($nom, $email, $adresse, $tel, $etat, $statut, $id ));		
+		    $pstmt->closeCursor();
+		    Database::close();			
+		}
+		catch(PDOException $e)
+		{
+			throw $e;
+		}
+	}
+	public function deleteMembre($id)
+	{
+		$request = "DELETE FROM membre WHERE ID = '".$id."'";
+		try
+		{
+			$conn = Database::getInstance();
+			return $conn->exec($request);
+		}
+		catch(PDOException $e)
+		{
+			throw $e;
+		}
+	}
+	public function tot_Volentaires()
+	{
+		$db = Database::getInstance();
+		$pstmt = $db->prepare("SELECT * FROM membre WHERE GROUP_ID = 4");
+		$pstmt->execute();		
+		$count = $pstmt->rowCount();								
+		$pstmt->closeCursor();
+		return $count;
+	}
+
+	public function changerActivation($activite, $id)
+	{
+		$conn  = Database::getInstance();	
+		$pstmt = $conn->prepare(" UPDATE membre SET ACTIF = ? WHERE ID = ? ");
+		$pstmt->execute(array($activite, $id ));		
+		$pstmt->closeCursor();
+		Database::close();
+    }
 }
 
 ?>

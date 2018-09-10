@@ -1,5 +1,5 @@
 <?php
-        require_once('../modeles/config/CategoryDAO_class.php');
+        require_once('../modeles/config/CategoryDAO.class.php');
            
         if($_SERVER['REQUEST_METHOD'] != 'POST')
         {

@@ -1,12 +1,12 @@
 <?php
 if (!ISSET($_SESSION)) 
 session_start(); 
-if($_SESSION['courriel'] != "admin@admin.ca")    
+if(!ISSET($_SESSION['admin']))    
    {
-      header('Location: connexion.php');
+      header('Location: ../vues/connexion.php');
       exit();
    }
-require_once('../modeles/config/CategoryDAO_class.php');
+require_once('../modeles/config/CategoryDAO.class.php');
 require_once('../modeles/config/Format.php');
 
         if($_SERVER['REQUEST_METHOD'] == 'POST')

@@ -1,6 +1,6 @@
 $('.admin-toggle-info').click(function()
   {
-     $(this).toggleClass('selected').parent().next('.panel-body').fadeToggle(100);
+     $(this).toggleClass('selected').parent().next('.panel-body').fadeToggle(300);
      if($(this).hasClass('selected'))
        {
           $(this).html('<i class="fa fa-minus fa-lg"></i>');
