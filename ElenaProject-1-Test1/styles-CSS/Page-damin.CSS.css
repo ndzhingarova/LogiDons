@@ -1,0 +1,73 @@
+
+h1{
+    font-size:55px;
+    margin:40px 0;
+    font-weight: bold;
+    color:#666;
+}
+
+.home-stats .stat{
+    background-color: #eee;
+    border: 1px solid #ccc;
+    padding: 20px;
+    font-size: 15px;
+    color:#fff;
+    border-radius:10px;
+    position:relative;
+    overflow:hidden;
+}
+.home-stats .stat i{
+    position:absolute;
+    font-size: 80px;
+    top:35px;
+    left:30px;
+}
+.home-stats .stat .admin-info{
+    float:right;
+}
+.home-stats .stat a{
+    color:#fff;
+}
+.home-stats .stat a:hover{
+    text-decoration:none;
+}
+.home-stats .stat span{
+    display:block;
+    font-size: 60px;
+}
+.home-stats .admin-st-category{
+    background-color: #3498db;
+}
+.home-stats .admin-st-employe{
+    background-color: #00897b;
+}
+.home-stats .admin-st-volentaires{
+    background-color: #3f51b5;
+}
+.home-stats .admin-st-donateurs{
+    background-color: #8e44ad;
+}
+.home-stats .admin-st-dons{
+    background-color: #607d8b;
+}
+.home-stats .admin-st-montant{
+    background-color: #afb42b;
+}
+
+
+.latest{
+    margin-top:60px;
+}
+
+.latest .admin-toggle-info{
+    color:#999;
+    cursor:pointer;
+}
+.latest .admin-toggle-info:hover{
+    color:#444;
+}
+
+.latest .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 0px;
+}
+

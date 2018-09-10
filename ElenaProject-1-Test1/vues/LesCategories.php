@@ -1,15 +1,29 @@
 <?php
   if (!ISSET($_SESSION)) 
   session_start(); 
-  if($_SESSION['courriel'] != "admin@admin.ca")    
+  if(!ISSET($_SESSION['admin']))    
      {
         header('Location: connexion.php');
         exit();
      } 
-  require_once('../modeles/config/CategoryDAO_class.php');
+  require_once('../modeles/config/CategoryDAO.class.php');
   require_once('../modeles/config/Format.php');
   $pageTitle = "Les membres";
   include('header.php');  
+?>
+    <style>
+      body{
+
+        background:url(../images/marbre.jpg) no-repeat center center fixed;
+        -webkit-background-size:cover;
+        -moz-background-size:cover;
+        -o-background-size:cover;
+        background-size:cover;  
+      }
+    </style>
+<?php
+  
+
   include('navBar.php');
 ?>
 <h1 class="text-center">Liste des Categories</h1>
@@ -29,12 +43,12 @@
            foreach($tab_Cat as $ligne)
              {
                 echo "<tr>";
-                   echo "<td>".$ligne['CATEGORY_ID']."</td>";                  
-                   echo "<td>".$ligne['CATEGORY_NAME']."</td>";
-                   echo "<td>".$format->textShorten($ligne['CATEGORY_DESC'], 50)."</td>";               
+                   echo "<td>".$ligne['ID']."</td>";                  
+                   echo "<td>".$ligne['NOM']."</td>";
+                   echo "<td>".$format->textShorten($ligne['DESCRIPTION'], 50)."</td>";               
                    echo "<td>
-                            <a href='EditCatpage.php?catid=".$ligne['CATEGORY_ID']."' class='btn btn-success'>Edit</a>
-                            <a href='../controleurs/Controle_DeleteCategory.php?catid=".$ligne['CATEGORY_ID']."' class='btn btn-danger confirm'>Supprimmer</a>
+                            <a href='EditCatpage.php?catid=".$ligne['ID']."' class='btn btn-success'>Edit</a>
+                            <a href='../controleurs/Controle_DeleteCategory.php?catid=".$ligne['ID']."' class='btn btn-danger confirm'>Supprimmer</a>
                          </td>";
                 echo "<tr>";
              }

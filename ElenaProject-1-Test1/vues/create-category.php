@@ -1,7 +1,7 @@
 <?php
     if (!ISSET($_SESSION)) 
          session_start(); 
-    if($_SESSION['courriel'] != "admin@admin.ca")    
+    if(!ISSET($_SESSION['admin']))    
     {
         header('Location: connexion.php');
         exit();

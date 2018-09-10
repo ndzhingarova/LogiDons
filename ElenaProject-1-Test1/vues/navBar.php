@@ -5,12 +5,14 @@
   if($pageTitle == "La page Index")
   {
 	  $cheminAccueil = '';
-	  $chemin = 'vues/';	  
+	  $chemin = 'vues/';
+	  $cheminLogout = '';
   }	 	 
   else
   {
 	  $cheminAccueil = '../index.php';
-	  $chemin = '';	  
+	  $chemin = '';
+	  $cheminLogout = '../';	  
   }    
 ?>
 <div class="navbar">
@@ -28,25 +30,26 @@
 			<div class="collapse navbar-collapse" id="app-nav">			
  			     
 			    <?php
-					if($_SESSION['courriel'] == 'admin@admin.ca' )
+					if( ISSET($_SESSION['admin']) )
 					  {
 						echo "<ul class='nav navbar-nav'>
 						         <li><a href='".$chemin."PageAdmin.php.'><span class='glyphicon glyphicon-folder-open'></span></span>Page Admin</a></li>
 					          </ul>";
 					  }
 				?>
-				<ul class='nav navbar-nav navbar-right'> 
-					<li><a href='<?php echo $chemin; ?>CreateDon.php'><span class='glyphicon glyphicon-user'></span>Ofrir un Don</a></li> 
-				</ul>
-				<ul class='nav navbar-nav navbar-right'> 
-					<li><a href='#'><span class='glyphicon glyphicon-user'></span>Modifier un Don</a></li> 
-				</ul>
+				
 				<?php		
-				    if( $_SESSION['courriel'] == '' )
+				    if( !ISSET($_SESSION['connected']) )
 				        {
 						  echo " <ul class='nav navbar-nav'> 
 							        <li><a href='".$chemin."connexion.php'><span class='glyphicon glyphicon-user'></span>Connection</a></li> 
-						         </ul>";
+								 </ul>
+								 <ul class='nav navbar-nav navbar-right'> 
+					                <li><a href='".$chemin."CreateDon.php'><span class='glyphicon glyphicon-user'></span>Ofrir un Don</a></li> 
+				                 </ul>
+				                 <ul class='nav navbar-nav navbar-right'> 
+					                <li><a href='#'><span class='glyphicon glyphicon-user'></span>Modifier un Don</a></li> 
+				                 </ul>";
 						}
                     else
                         {
@@ -57,7 +60,7 @@
 										</a>
 										<ul class='dropdown-menu'>
 											<li><a href='#'>Modifier profile </a></li>
-											<li><a href='#'>LogOut</a></li>
+											<li><a href='".$cheminLogout."controleurs/Controle_logout.php'>LogOut</a></li>
 										</ul>
 									</li>
 								</ul>";									

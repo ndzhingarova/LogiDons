@@ -1,6 +1,6 @@
 <?php
-require_once("../modeles/classes/2-Database_class.php");
-require_once("../modeles/classes/4-Categorie_class.php");
+require_once("../modeles/classes/2-Database.class.php");
+require_once("../modeles/classes/4-Categorie.class.php");
 
 class CategorieDAO
 {

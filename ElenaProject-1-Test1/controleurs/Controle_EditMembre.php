@@ -1,6 +1,7 @@
 <?php
 
-require_once('../modeles/config/DonnateurDAO_class.php');
+require_once('../modeles/config/MembreDAO.class.php');
+
 class Controle_EditMembre
 {
   public function getMembre() // utile
@@ -9,28 +10,16 @@ class Controle_EditMembre
           {
               $id = intval($_GET['membreid']);
               //verifier si ce userid existe dans la BDD
-              $dao = new DonnateurDAO();
+              $dao = new MembreDAO();
               $membre = $dao->getMembreById($id);
               return $membre;              
           }
       else
           {
-            
+              header('Location: ../vues/connexion.php');
+              exit();
           }        
-  }
-  public function mettreAjour()
-  {   
-    if($_SERVER['REQUEST_METHOD'] == 'POST')
-    { 
-      $id = $_POST['categoryID'];
-      $nm = $_POST['nomCat'];  
-      $desc =  $_POST['desCat'];   
-      $dao = new CategorieDAO();
-      $dao->catUpdate($nm, $desc, $id);
-      header('Location: LesCategories.php');      
-    }       
-  }
-  
+  } 
 }
 
 

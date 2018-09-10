@@ -14,8 +14,9 @@ else
     <link rel="stylesheet" href="<?php echo $cheminCSS ?>bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo $cheminCSS ?>font-awesome.min.css">
     <link rel="stylesheet" href="<?php echo $cheminCSS ?>NavBarCSS.css"> 
-    <link rel="stylesheet" href="<?php echo $cheminCSS ?>Page-damin_CSS.css">
-    <link rel="stylesheet" href="<?php echo $cheminCSS ?>PageMembres_CSS.css">
+    <link rel="stylesheet" href="<?php echo $cheminCSS ?>Page-damin.CSS.css">
+    <link rel="stylesheet" href="<?php echo $cheminCSS ?>PageMembres.CSS.css">
+    <link rel="stylesheet" href="<?php echo $cheminCSS ?>CreateDonCSS.css">
 </head>
 <body>
 
