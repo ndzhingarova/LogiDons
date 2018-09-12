@@ -18,12 +18,17 @@ if (!ISSET($_SESSION))
                         <form method="post" action="../controleurs/Controle_CreateDon.php" enctype="multipart/form-data">
                            <div class="row">
 <!-- --------------------------------------------------------------------------------------------------------------------
-        Debut de la saisie des donnees sur le Donnateur
+        Debut de la saisie des donnees sur le Donateur
 ------ --------------------------------------------------------------------------------------------------------------- -->                          
                               <div class='col-md-6'>
                                   <div class='panel panel-info'>                                
                                       <div class='panel-heading text-center'>infos du donnateur</div>
                                       <div class='panel-body'>
+                        <!-- ----------- Le Checkbox -------------------------------------------- -->              
+                                          <div class="divCheck form-group" id="checkIfCompagnie">                         
+                                             <input id="checkCompagnie" type="checkbox" name="checkCompagnie">                              
+                                          </div> 
+                                          <label class="control-label">Je suis une entreprise</label>  
                         <!-- ---------- Debut Div Compagnie --------------------------------------->          
                                           <div id="divCompagnie" class="form-group"  >
                                              <label class="control-label">Nom de l'entreprise</label>
@@ -47,9 +52,8 @@ if (!ISSET($_SESSION))
                         <!-- ------------------------------------------------------------------- -->
                                           <div class="adresseDonateur form-group form-group-lg">
                                             <label class="control-label">Adresse</label>
-                                            <div class="divAdresse">
-                                                <span>numero civic </span> <input type="number" name="numCivic"><br>
-                                                <span>nom de la rue</span> <input type="text" name="nomRue"><br>
+                                            <div class="divAdresse">                                               
+                                                <span>adresse      </span> <input type="text" name="adresse"><br>
                                                 <span>ville        </span> <input type="text" name="ville"><br>
                                                 <span>code postale </span> <input type="text" name="codePostale"><br>
                                                 <span>province</span>
@@ -62,11 +66,7 @@ if (!ISSET($_SESSION))
                                                 </select>
                                             </div>
                                           </div>
-                        <!---------------------------------------------------------------- -->
-                                          <div class="divCheck form-group" id="checkIfCompagnie">                         
-                                             <input id="checkCompagnie" type="checkbox" name="checkCompagnie">                              
-                                          </div> 
-                                          <label class="control-label">Je suis une entreprise</label>                                   
+                        <!---------------------------------------------------------------- -->                                                                         
                                       </div>
                                   </div>
                               </div> <!-- autocomplete="off" required -->

@@ -248,15 +248,15 @@ class DonsDAO
 		}	
 
 	public function get_Somme_Dons()	
-	{ 
-		$db = Database::getInstance();			
-		$pstmt = $db->prepare(" select SUM(MONTANT) AS total FROM don ");
-		$pstmt->execute();
-		$laSomme = 0;
-		$row = $pstmt->Fetch(PDO::FETCH_ASSOC);
-		$laSomme = $row['total'];		
-		return $laSomme;
-	}
+		{ 
+			$db = Database::getInstance();			
+			$pstmt = $db->prepare(" select SUM(MONTANT) AS total FROM don ");
+			$pstmt->execute();
+			$laSomme = 0;
+			$row = $pstmt->Fetch(PDO::FETCH_ASSOC);
+			$laSomme = $row['total'];		
+			return $laSomme;
+		}
 }
 
 
