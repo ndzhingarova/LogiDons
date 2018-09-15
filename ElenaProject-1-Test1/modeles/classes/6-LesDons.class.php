@@ -2,7 +2,7 @@
 
 class LesDons {
 	private $id_don;
-	private $id_donnateur;
+	//private $id_donnateur;
 	private $don_category;
 	private $nom_don;
 	private $desc_don;
@@ -17,12 +17,15 @@ class LesDons {
 	private $photoDon;
 	private $id_membre;
 
+	private $id_employe;
+	private $quantite;
+
 	public function __construct() { }	
 
 	public function getID()                { return $this->id_don; }	
 	public function setId($value)          { $this->id_don = $value; }
-	public function getID_Donnateur()      { return $this->id_donnateur; }	
-	public function setId_Donnateur($value){ $this->id_donnateur = $value; }
+	//public function getID_Donnateur()      { return $this->id_donnateur; }	
+	//public function setId_Donnateur($value){ $this->id_donnateur = $value; }
 	public function getCatDon()            { return $this->don_category; }	
 	public function setCatDon($value)      { $this->don_category = $value; }
 	public function getNomDon()            { return $this->nom_don; }	
@@ -50,44 +53,55 @@ class LesDons {
 	public function getMembreID()          { return $this->id_membre; }	
 	public function setMembreId($value)    { $this->id_membre = $value; }
 
+	public function getEmployeID()          { return $this->id_employe; }	
+	public function setEmployeId($value)    { $this->id_employe = $value; }
+	public function getQuantite()          { return $this->quantite; }	
+	public function setQuantite($value)    { $this->quantite = $value; }
+
 	public function loadFromObject($x)
 	{
-		$this->id_don           = $x->DON_ID;
-		$this->id_donnateur     = $x->DONNATEUR_ID;
-		$this->don_category     = $x->DON_CATEGORY;
-		$this->nom_don          = $x->NOM_DON;
-		$this->desc_don         = $x->DESC_DON;
+		$this->id_don           = $x->ID;
+		//$this->id_donnateur     = $x->DONNATEUR_ID;
+		$this->don_category     = $x->CATEGORIE_ID;
+		$this->nom_don          = $x->NOM;
+		$this->desc_don         = $x->DESCRIPTION;
 		$this->mode_livraison   = $x->MODE_LIVRAISON;
-		$this->montant_don      = $x->MANTANT_DON;
+		$this->montant_don      = $x->MONTANT;
 		$this->datePromesse     = $x->DATE_PROMESSE;
 		$this->datePromise      = $x->DATE_PROMISE;
 		$this->dateAnnulation   = $x->DATE_ANNULATION;
 		$this->dateAcceptation  = $x->DATE_ACCEPTATION;
 		$this->dateReception    = $x->DATE_RECU;
-		$this->dateRefu         = $x->DATE_REFU;
-		$this->photoDon         = $x->PHOTO_DON;
+		$this->dateRefu         = $x->DATE_REFUS;
+		$this->photoDon         = $x->PHOTO;
 		$this->id_membre        = $x->MEMBRE_ID;
+
+		$this->id_employe        = $x->EMPLOYE_ID;
+		$this->quantite        = $x->QUANTITE;
 	}	
 
 	public function loadFromArray($tab)
 	{
 		
-		$this->id_don           = $tab["DON_ID"];
-		$this->id_donnateur     = $tab["DONNATEUR_ID"];
-		$this->don_category     = $tab["DON_CATEGORY"];
-		$this->nom_don          = $tab["NOM_DON"];
-		$this->desc_don         = $tab["DESC_DON"];
+		$this->id_don           = $tab["ID"];
+		//$this->id_donnateur     = $tab["DONNATEUR_ID"];
+		$this->don_category     = $tab["CATEGORIE_ID"];
+		$this->nom_don          = $tab["NOM"];
+		$this->desc_don         = $tab["DESCRIPTION"];
 		$this->mode_livraison   = $tab["MODE_LIVRAISON"];
 		$this->datePromesse     = $tab["DATE_PROMESSE"];
-		$this->montant_don      = $tab["MANTANT_DON"];
+		$this->montant_don      = $tab["MONTANT"];
 		$this->datePromesse     = $tab["DATE_PROMESSE"];
 		$this->datePromise      = $tab["DATE_PROMISE"];
 		$this->dateAnnulation   = $tab["DATE_ANNULATION"];
 		$this->dateAcceptation  = $tab["DATE_ACCEPTATION"];
 		$this->dateReception    = $tab["DATE_RECU"];
-		$this->dateRefu         = $tab["DATE_REFU"];
-		$this->photoDon         = $tab["PHOTO_DON"];
+		$this->dateRefu         = $tab["DATE_REFUS"];
+		$this->photoDon         = $tab["PHOTO"];
 		$this->id_membre        = $tab["MEMBRE_ID"];
+
+		$this->id_employe        = $tab["EMPLOYE_ID"];
+		$this->quantite        = $tab["QUANTITE"];
 	}
 
 

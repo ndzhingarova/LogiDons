@@ -18,6 +18,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     //verification de l'existance de l'utilisateur
     $dao = new MembreDAO();
     $user = $dao->findMembre($courriel, $hashedPass);
+    
 
     //verification s'il n'existe pas ou a quel groupe il appartient
     if( $user )// c-a-d les donnees sont valides et le membre existe
@@ -39,8 +40,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                     exit();
                }
             if($user->getGroupId() == 3) // employee (permanent ou volentaire)
-               {                  
-                    header('Location: ../vues/PageEmploye.php');
+               {    
+                    $_SESSION['employe'] = "employe";              
+                    header('Location: ../vues/AfficherDonsEmploye.php');
                     exit();
                }             
         }      
@@ -57,14 +59,4 @@ else
     header('Location: ../vues/connexion.php');
     exit();
 }
-
 ?>
-
-
-
-
-
-
-
-
-
