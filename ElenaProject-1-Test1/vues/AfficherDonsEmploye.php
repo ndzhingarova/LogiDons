@@ -18,8 +18,8 @@
 //        if(ISSET($_SESSION['userId'])){
             require_once('../modeles/config/DonsDAO.class.php');
             $dao = new DonsDAO();
-
-            $liste = $dao->trouverDonsEmploye($_GET['employe']);
+            $_SESSION["employe"] = 3; //gerer ca au login
+            $liste = $dao->trouverDonsEmploye($_SESSION['employe']);// change to employe
             if (empty($liste)) {
                 echo "Vous avez traiter toutes les dons attribues";
             } else {

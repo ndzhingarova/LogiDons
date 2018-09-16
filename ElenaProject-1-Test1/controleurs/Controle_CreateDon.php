@@ -69,8 +69,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $secondDao = new DonsDAO();
             $emp_id = $secondDao->AttibuerEmploye();
             $secondDao->createDon($myDonateur->getid(), $emp_id,$catDon,$nom,$DescDon,$qtt, $modeLivr,$montantDon, $dtPrm, $img);
-            
-            // OutilCourriel::envoyer($courriel,$nomDntr,$myDonateur->getid());
+            $message='Cher Donateur, Merci pour votre don. 
+            Vous pouvez consulter vos dons toujour sur cette lien: 
+            http://localhost:7710/projetD/ElenaProject-1-Test1/controleurs/AfficherDonsDonateur.php?donateur='.$myDonateur->getid();
+            // OutilCourriel::envoyer($courriel,$nomDntr, $message);
             header('Location: ../vues/merci.php');
             exit();
             } else {

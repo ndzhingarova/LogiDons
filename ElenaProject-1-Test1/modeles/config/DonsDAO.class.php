@@ -83,31 +83,29 @@ class DonsDAO
 			return $id_Emp_Suivant;
 		}
 
-	public function trouverDonsDonateur($id)
-		{
-			$cnx = Database::getInstance();
-			try {
+	public function trouverDonsDonateur($id){
+		$cnx = Database::getInstance();
+		try {
 			$liste = Array();//new Liste();
 		
 			$pstmt = $cnx->prepare("SELECT * FROM don WHERE MEMBRE_ID = :x");
 			$res = $pstmt->execute(array(':x' => $id));
 			$res = $pstmt->fetchAll	(PDO::FETCH_OBJ);
-		    foreach($res as $row) {
+			foreach($res as $row) {
 				$c = new Don();
 				$c->loadFromArray($row);
 				array_push($liste, $c); //$liste->add($c);
-		    }
+			}
 			$pstmt->closeCursor();
 			Database::close();
 			return $liste;
-			} catch (PDOException $e) {
-				print "Error!: " . $e->getMessage() . "<br/>";
-				return $liste;
-			}	
+		} catch (PDOException $e) {
+			print "Error!: " . $e->getMessage() . "<br/>";
+			return $liste;
 		}	
+	}	
 
-		public function trouverDonParId($id)
-		{
+		public function trouverDonParId($id){
 			$cnx = Database::getInstance();
 			try {		
 				$pstmt = $cnx->prepare("SELECT * FROM don where ID = :x");
@@ -126,6 +124,30 @@ class DonsDAO
 			}	
 
 		}	
+
+		public function accepterDon($id){
+			$cnx = Database::getInstance();
+			try {		
+				$pstmt = $cnx->prepare("UPDATE `don` SET `DATE_ACCEPTATION`= now() WHERE ID = :x");
+				$res = $pstmt->execute(array(':x' => $id));
+				return $res;
+			} catch (PDOException $e) {
+				print "Error!: " . $e->getMessage() . "<br/>";
+				return NULL;
+			}	
+		}
+
+		public function refuserDon($id){
+			$cnx = Database::getInstance();
+			try {		
+				$pstmt = $cnx->prepare("UPDATE `don` SET `DATE_REFUS`= now() WHERE ID = :x");
+				$res = $pstmt->execute(array(':x' => $id));
+				return $res;
+			} catch (PDOException $e) {
+				print "Error!: " . $e->getMessage() . "<br/>";
+				return NULL;
+			}	
+		}
 		
 		public function trouverDonsEmploye($idEmploye)
 		{

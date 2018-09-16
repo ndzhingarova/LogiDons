@@ -66,6 +66,24 @@ class DonnateurDAO
 		return NULL;
 	}
 
+	public function findDonateurByID($id) // utile
+	{
+		$db = Database::getInstance();
+		$pstmt = $db->prepare("SELECT * FROM membre WHERE ID = :x");
+		$pstmt->execute(array(':x' => $id));
+		$result = $pstmt->fetch(PDO::FETCH_OBJ);
+		if ($result)
+		{
+			$c = new Donnateur();
+			$c->loadFromObject($result);
+			$pstmt->closeCursor();
+			return $c;
+		}
+		$pstmt->closeCursor();
+		Database::close();
+		return NULL;
+	}
+
 	public function findDonateurInscrit($courriel,$MotDePasse) 
 	{	
         $db = Database::getInstance();

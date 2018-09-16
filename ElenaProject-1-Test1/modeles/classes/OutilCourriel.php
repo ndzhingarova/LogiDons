@@ -11,7 +11,7 @@
 use PHPMailer\PHPMailer\PHPMailer;
 class OutilCourriel {
 
-    public static function envoyer($courriel, $nomRecipient,$id){
+    public static function envoyer($courriel, $nomRecipient, $message){
  
 echo (extension_loaded('openssl')?'SSL loaded':'SSL not loaded')."\n"; 
 
@@ -66,8 +66,7 @@ $mail->Subject = 'Vos dons aident';
 //convert HTML into a basic plain-text alternative body
 //$mail->msgHTML(file_get_contents('../contents.html'), __DIR__);
 //Replace the plain text body with one created manually
-$mail->Body = 'Cher Donateur, Merci pour votre don. 
-Vous pouvez consulter vos dons toujour sur cette lien: http://localhost:7710/projetD/ElenaProject-1-Test1/controleurs/AfficherDonsDonateur.php?donateur='.$id;
+$mail->Body = $message;
 //Attach an image file
 //$mail->addAttachment('c:/Users/Public/Pictures/Sample Pictures/Tulips.jpg');
 //send the message, check for errors
