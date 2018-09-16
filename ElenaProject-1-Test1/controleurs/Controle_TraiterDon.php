@@ -13,15 +13,17 @@ if (!ISSET($_SESSION))
             $dao = new DonsDAO();
             $don = $_SESSION["don"];
             $don = $dao->accepterDon($don);
+            $subject = "Votre don est accepté";
             $message = "Cher Donateur, Nous acceptons votre don.";
-            OutilCourriel::envoyer($_SESSION["donateurCourriel"],$_SESSION["donateur"], $message);
+            OutilCourriel::envoyer($_SESSION["donateurCourriel"],$_SESSION["donateur"],$subject, $message);
             break;
             case "refuser":
             $dao = new DonsDAO();
             $don = $_SESSION["don"];
             $don = $dao->refuserDon($don);
+            $subject = "Votre don ne peut pas être accepté";
             $message = "Cher Donateur, Nous voulons vous informes que nous ne pouvons pas accepter le don que vous avez proposer.";
-            OutilCourriel::envoyer($_SESSION["donateurCourriel"],$_SESSION["donateur"], $message);
+            OutilCourriel::envoyer($_SESSION["donateurCourriel"],$_SESSION["donateur"],$subject, $message);
             break;
         }
     }

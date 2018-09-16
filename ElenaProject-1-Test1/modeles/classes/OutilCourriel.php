@@ -11,7 +11,7 @@
 use PHPMailer\PHPMailer\PHPMailer;
 class OutilCourriel {
 
-    public static function envoyer($courriel, $nomRecipient, $message){
+    public static function envoyer($courriel, $nomRecipient, $subject, $message){
  
 echo (extension_loaded('openssl')?'SSL loaded':'SSL not loaded')."\n"; 
 
@@ -61,7 +61,7 @@ $mail->addReplyTo('anotheroneniki@gmail.com', 'LogiDons');
 //Set who the message is to be sent to
 $mail->addAddress($courriel, $nomRecipient);
 //Set the subject line
-$mail->Subject = 'Vos dons aident';
+$mail->Subject = $subject;
 //Read an HTML message body from an external file, convert referenced images to embedded,
 //convert HTML into a basic plain-text alternative body
 //$mail->msgHTML(file_get_contents('../contents.html'), __DIR__);

@@ -20,6 +20,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         }    
     // recuperation des donnees envoyees
     $format = new Format();
+    $subject = "Vous allez doner";
 
     $nom         = $format->validation($_POST['nomDon']);     // nom du don
     $qtt         = $format->validation($_POST['qttDon']);     // quantite donnee
@@ -51,6 +52,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
    echo $nom."<br>";echo $qtt."<br>";echo $catDon."<br>";echo $modeLivr."<br>";
    echo $DescDon."<br>";echo $montantDon."<br>";echo $dtPrm."<br>";echo $img."<br>";
 */   
+    //
     $membreDao = new MembreDAO();
     if( ISSET($_POST['checkCompagnie']) ) {
         //if()  si la compagnie existe deja dans la BDD
@@ -72,7 +74,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $message='Cher Donateur, Merci pour votre don. 
             Vous pouvez consulter vos dons toujour sur cette lien: 
             http://localhost:7710/projetD/ElenaProject-1-Test1/controleurs/AfficherDonsDonateur.php?donateur='.$myDonateur->getid();
-            // OutilCourriel::envoyer($courriel,$nomDntr, $message);
+            // OutilCourriel::envoyer($courriel,$nomDntr,$subject, $message);
             header('Location: ../vues/merci.php');
             exit();
             } else {
@@ -92,8 +94,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $secondDao = new DonsDAO();
         $emp_id = $secondDao->AttibuerEmploye();
         $secondDao->createDon($myDonateur->getid(), $emp_id,$catDon,$nom,$DescDon,$qtt, $modeLivr,$montantDon, $dtPrm, $img);
+        $message='Cher Donateur, Merci pour votre don. 
+            Vous pouvez consulter vos dons toujour sur cette lien: 
+            http://localhost:7710/projetD/ElenaProject-1-Test1/controleurs/AfficherDonsDonateur.php?donateur='.$myDonateur->getid();
     //  if($secondDao->createDon($myDonateur->getid(), $emp_id,$catDon,$nom,$DescDon,$qtt, $modeLivr,$montantDon, $dtPrm, $img))
-        //     OutilCourriel::envoyer($courriel,$nomDntr,$myDonateur->getid());
+        //     OutilCourriel::envoyer($courriel,$nomDntr,$subject, $message);
     } else {
         echo "Erruer";
     }           
