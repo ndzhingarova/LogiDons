@@ -16,9 +16,7 @@ if (!ISSET($_SESSION))
         var_dump($don);
         if($don != null){
             echo "le id de don est".$don->getID();
-        } else{
-            echo "Ce don n'existe pas";
-        }
+        
     
     ?>       
         <div class="container  col-md-10  col-md-offset-1" style="top:10px">
@@ -92,12 +90,12 @@ if (!ISSET($_SESSION))
                                       <div class='panel-body'>
                                         <div class="form-group">
                                             <label class="control-label">Nom du Don</label>
-                                            <input type="text" name="nomDon" class="form-control" >
+                                            <input type="text" name="nomDon" class="form-control" value=<?=$don->getNomDon()?> disabled>
                                         </div>
                         <!-- ------------------------------------------------------------------- -->                
                                         <div class="form-group">
                                             <label class="control-label">Quantite</label>
-                                            <input type="number" name="qttDon" class="form-control">
+                                            <input type="number" name="qttDon" class="form-control" value=<?=$don->getQuantite()?> disabled>
                                         </div>
                         <!-- ------------------------------------------------------------------- -->                
                                         <div class="form-group">
@@ -124,11 +122,11 @@ if (!ISSET($_SESSION))
                                             <label class="control-label">Mode de livraison</label>
                                             <div style="border:1.5px solid #e6e6e6;border-radius:5px; padding-top:5px;padding-left:30px;">
                                             <div>
-                                                <input id="id1" type="radio" name="ModeLivr" value="je vais deposer au centre">
+                                                <input id="id1" type="radio" name="ModeLivr" value="je vais deposer au centre" <?=$don->getModeLivr()=="au centre"? checked: ""?>>
                                                 <label for="id1">je vais deposer au centre</label>
                                             </div>
                                             <div>
-                                                <input id="id2" type="radio" name="ModeLivr" value="vous devez passer chez moi">
+                                                <input id="id2" type="radio" name="ModeLivr" value="vous devez passer chez moi"<?=$don->getModeLivr()=="chez donateur"? checked: ""?>>
                                                 <label for="id2">vous devez passer chez moi</label>
                                             </div>
                                             </div>
@@ -164,7 +162,11 @@ if (!ISSET($_SESSION))
                 </div><!--end div panel heading -->
             </div><!--end div panel default -->
         </div><!--end div container -->
+        
 <?php
+    } else{
+        echo "Ce don n'existe pas";
+    }
 } else {
     header('Location: ../vues/connexion.php');
     exit();
