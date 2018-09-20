@@ -176,7 +176,7 @@ if(isset($_SESSION['connected']) &&  isset($_SESSION['admin']) )
         </div><!-- end div row Deuxieme -->
       </div><!-- end div container Deuxieme -->
 </div>
-    <?php include('footer.php') ?>
+    
 <?php
 }
   else
@@ -184,3 +184,5 @@ if(isset($_SESSION['connected']) &&  isset($_SESSION['admin']) )
      return ""; //lui renvoyer la page d'Accueil.
 }
 ?>
+
+<?php include('footer.php') ?>

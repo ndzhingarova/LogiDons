@@ -4,7 +4,7 @@ require_once("../modeles/classes/3-Membre.class.php");
 
 class MembreDAO
 {	
-	public function createMembre($x1,$x2,$x3,$x4,$x5) // utile
+	public function createMembre($x1,$x2,$x3,$x4,$x5) 
 	{
 		try
 		{
@@ -23,8 +23,8 @@ class MembreDAO
 			throw $e;
 		}
 	}
-	public function findMembre($courriel, $MotDePasse)
-	{
+	public function findMembre($courriel, $MotDePasse) // utile
+	{// lors de l'authentification, dans le Controle_Login.php
 		$db = Database::getInstance();
 
 		$pstmt = $db->prepare("SELECT * FROM membre WHERE COURRIEL = :x AND MOT_DE_PASSE = :y");
@@ -61,9 +61,7 @@ class MembreDAO
 		return NULL;
 	}
 	public function findEmail($courriel) // utile
-	{
-	           // cette fonction nous renvoie le nombre d'enregistrements
-	            // lié à cet email (0 ou 1 ).
+	{// chercher si l'email existe ou pas, la fonction retourne 0 ou 1
 		$db = Database::getInstance();
 		$pstmt = $db->prepare("SELECT * FROM membre WHERE MEMBRE_EMAIL = :x");
 		$pstmt->execute(array(':x' => $courriel));	
@@ -73,7 +71,7 @@ class MembreDAO
 		return $count;
 	}	
 	public function getTot_Membres() // utile
-	{
+	{// A changer (il faut retourner seulement les employés)
 		$db = Database::getInstance();
 		$pstmt = $db->prepare(" SELECT * FROM  membre");
 		$pstmt->execute();		
@@ -81,17 +79,9 @@ class MembreDAO
 		$pstmt->closeCursor();
 		return $count;
 	}
-	public function tot_Pending_Membres() // utile
-	{
-		$db = Database::getInstance();
-		$pstmt = $db->prepare(" SELECT * FROM  membre WHERE GROUP_ID = 4 AND PENDING = 0  ");
-		$pstmt->execute();		
-		$count = $pstmt->rowCount();								
-		$pstmt->closeCursor();
-		return $count;
-	}
-	public function get_Volentaires()
-	{
+
+	public function get_Volentaires() // utile
+	{// chercher les volentaires chargés de traiter les Dons et les afficher dans la PageAdmin
 		try 
 		{
 			$conn = Database::getInstance();			
@@ -106,8 +96,8 @@ class MembreDAO
 		    return $rows;
 		}	
 	}
-	public function get_Emp_traiteurs()
-	{
+	public function get_Emp_traiteurs() // utile
+	{// chercher les employés chargés de traiter les Dons et les afficher dans la PageAdmin
 		try 
 		{
 			$conn = Database::getInstance();			
@@ -122,8 +112,8 @@ class MembreDAO
 		    return $rows;
 		}	
 	}
-	public function findAll_Membres() // cette methode fait un select * de toute la table, et renvoie 
-	{                         // toutes les donnees dans un tableau a 2 dimensions.                      
+	public function findAll_Membres() // utile ( A changer- il faut retourner seulement les employés)
+	{// chercher les employés et les afficher dans la page LesMembres.php  		                                        
 		try 
 		{
 			$conn = Database::getInstance();			
@@ -132,14 +122,14 @@ class MembreDAO
             $rows = $res->fetchAll();		  
 			$res->closeCursor();
 			Database::close();
-			return $rows;
-		} catch (PDOException $e) {
+			return $rows;          // cette methode fait un select * de toute la table, et renvoi
+		} catch (PDOException $e) {// toutes les donnees dans un tableau a 2 dimensions.
 		    print "Error!: " . $e->getMessage() . "<br/>";
 		    return $rows;
 		}	
 	}	
 	public function getMembreById($id) //utile
-	{
+	{// lors du update, vérifier si l'ID passé existe bien dans la BDD
 		$db = Database::getInstance();
 
 		$pstmt = $db->prepare("SELECT * FROM membre WHERE ID = :x ");
@@ -156,7 +146,7 @@ class MembreDAO
 		$pstmt->closeCursor();
 		return NULL;
 	}
-	public function updateMembre($nom, $email,$adresse, $tel,  $etat, $statut, $id) //utile
+	public function updateMembre($nom, $email,$adresse, $tel,  $etat, $statut, $id) 
 	{  	
 		try
 		{
@@ -171,21 +161,9 @@ class MembreDAO
 			throw $e;
 		}
 	}
-	public function deleteMembre($id)
-	{
-		$request = "DELETE FROM membre WHERE ID = '".$id."'";
-		try
-		{
-			$conn = Database::getInstance();
-			return $conn->exec($request);
-		}
-		catch(PDOException $e)
-		{
-			throw $e;
-		}
-	}
-	public function tot_Volentaires()
-	{
+
+	public function tot_Volentaires() // utile
+	{// chercher le nombre totale des volentaires pour l'afficher dans la PageAdmin
 		$db = Database::getInstance();
 		$pstmt = $db->prepare("SELECT * FROM membre WHERE GROUP_ID = 4");
 		$pstmt->execute();		
@@ -194,8 +172,8 @@ class MembreDAO
 		return $count;
 	}
 
-	public function changerActivation($activite, $id)
-	{
+	public function changerActivation($activite, $id) // utile
+	{// dans la PageAdmin pour changer la disponibilité des employés et des volentaires
 		$conn  = Database::getInstance();	
 		$pstmt = $conn->prepare(" UPDATE membre SET ACTIF = ? WHERE ID = ? ");
 		$pstmt->execute(array($activite, $id ));		

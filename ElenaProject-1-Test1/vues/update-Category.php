@@ -12,7 +12,7 @@
     echo $catDAO->getDESC_CAT();
 ?>
 
-<h1 class="text-center" style="color:#666;font-weight: bold;margin:40px 0;font-size:40px;">Modifier une nouvelle Categorie</h1>
+<h1 class="text-center" style="color:#666;font-weight: bold;margin:40px 0;font-size:40px;">Modifier une Categorie</h1>
 <div class="container spacer col-md-6 col-xs-12 col-md-offset-3" style="top:50px">
         <div class="panel panel-default">
             <div class="panel-heading">Modifier une Categorie</div>

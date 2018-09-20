@@ -48,7 +48,7 @@
 					                <li><a href='".$chemin."CreateDon.php'><span class='glyphicon glyphicon-user'></span>Ofrir un Don</a></li> 
 				                 </ul>
 				                 <ul class='nav navbar-nav navbar-right'> 
-					                <li><a href='#'><span class='glyphicon glyphicon-user'></span>Modifier un Don</a></li> 
+					                <li><a href='".$chemin."RechercheDon.php'><span class='glyphicon glyphicon-user'></span>Modifier un Don</a></li> 
 				                 </ul>";
 						}
                     else

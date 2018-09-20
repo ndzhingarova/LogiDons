@@ -1,3 +1,5 @@
+// cette fonction est utilisee dans PageAdmin.php
+// elle sert a cacher ou a montrer les div d'en bas
 $('.admin-toggle-info').click(function()
   {
      $(this).toggleClass('selected').parent().next('.panel-body').fadeToggle(300);

@@ -15,7 +15,7 @@ require_once('../modeles/config/Format.php');
             $id   = $format->validation($_POST['categoryID']);
             $nm   = $format->validation($_POST['nomCat']);  
             $desc = $format->validation($_POST['desCat']);   
-            echo $id;echo $nm;echo $desc;
+            
             $dao = new CategorieDAO();  
            
             $dao->catUpdate($nm, $desc, $id);
