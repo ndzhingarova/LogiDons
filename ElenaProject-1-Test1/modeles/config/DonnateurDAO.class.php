@@ -1,41 +1,24 @@
 <?php
 require_once("../modeles/classes/2-Database.class.php");
 require_once("../modeles/classes/5-Donnateurs.class.php");
+require_once("../modeles/classes/7-Compagnie.class.php");
 
 class DonnateurDAO
 {	
-/*	public function createDonnateur($x1,$x2,$x3,$x4,$x5) //utile
-	{
-		try
-		{
-			$conn  = Database::getInstance();
-            $pstmt = $conn->prepare("INSERT INTO membre (DONNATEUR_NOM ,DONNATEUR_EMAIL ,DONNATEUR_ADRESS, DONNATEUR_TEL, MOT_DE_PASSE, DATE_CREATION)
-			                         VALUES                  (:znom,         :zcourriel,      :zadresse,        :ztel,         :zmotDP,      now())");
-			$pstmt->execute(array('znom'      => $x1,
-								  'zcourriel' => $x2,
-								  'zadresse'  => $x3,
-								  'ztel'      => $x4,
-								  'zmotDP'    => $x5,
-								  ));			
-		}
-		catch(PDOException $e)
-		{
-			throw $e;
-		}
-	}
-*/
-	public function createDonateurSansReg($nomDonateur, $courriel, $telephone, $adresse)
-	{
+	public function createDonateurSansReg($nomDonateur,$courriel,$adresse,$ville,$codePost,$province,$telephone)
+	{// inserer un nouveau Donateur qui n'existe pas dans la BDD
 		$db = Database::getInstance();
-		$pstmt = $db->prepare("INSERT INTO membre (NOM ,COURRIEL ,ADRESSE, TELEPHONE, GROUP_ID) VALUES 
-		(:nom, :courriel, :adresse, :telephone, 5 )");	
+		$pstmt = $db->prepare("INSERT INTO membre (NOM,COURRIEL,ADRESSE,VILLE,CODE_POSTALE,PROVINCE,TELEPHONE,GROUP_ID,DATE_CREATION) 
+		                                  VALUES (:nom,:courriel,:adresse,:ville,:codePostale,:province,:telephone, 5, now() )");	
 		try
 		{
 			$donateurResponse =  $pstmt->execute(array(':nom' => $nomDonateur,
 											':courriel' => $courriel,
 											':adresse' => $adresse,
-											':telephone' => $telephone
-											
+											':ville' => $ville,
+											':codePostale' => $codePost,
+											':province' => $province,
+											':telephone' => $telephone								
 											));
 			
 			return $donateurResponse;
@@ -46,10 +29,25 @@ class DonnateurDAO
 		}
 	}
 
+	public function insererNouvelleEntreprise($nomComp)
+	{// inserer une nouvelle Entreprise qui n'existe pas dans la BDD
+		try
+		{
+			$conn  = Database::getInstance();
+            $pstmt = $conn->prepare(" INSERT INTO compagnie (NOM, DATE_CREATION) VALUES(:znom, now()) ");
+            $pstmt->execute( array(':znom' => $nomComp) );
+            $pstmt->closeCursor();
+			Database::close();			
+		}
+		catch(PDOException $e)
+		{
+			throw $e;
+		}
+	}
+
 	public function findDonateurByEmail($courriel) // utile
-	{
-	        // cette fonction nous renvoie le nombre d'enregistrements
-	        // lié à cet email (0 ou 1 ).
+	{// rechercher un Donateur par son email. S'il existe la fonction le retourne sous
+     // forme d'objet, sinon elle retourne null.(elle est appellée dans Controle_CreateDon.php)
 		$db = Database::getInstance();
 		$pstmt = $db->prepare("SELECT * FROM membre WHERE COURRIEL = :x");
 		$pstmt->execute(array(':x' => $courriel));
@@ -66,11 +64,19 @@ class DonnateurDAO
 		return NULL;
 	}
 
+<<<<<<< HEAD
 	public function findDonateurByID($id) // utile
 	{
 		$db = Database::getInstance();
 		$pstmt = $db->prepare("SELECT * FROM membre WHERE ID = :x");
 		$pstmt->execute(array(':x' => $id));
+=======
+    public function findDonateurByNameByCourriel($nomComp, $courriel) // utile
+	{// cette fonction verifie si le nom du Contact de la compagnie existe dans la BDD ou non(Controle_createDon.php)
+		$db = Database::getInstance();
+		$pstmt = $db->prepare("SELECT * FROM membre WHERE NOM = :x AND COURRIEL = :y");
+		$pstmt->execute(array(':x' => $nomComp, ':y' => $courriel));
+>>>>>>> TaharBranc
 		$result = $pstmt->fetch(PDO::FETCH_OBJ);
 		if ($result)
 		{
@@ -84,7 +90,11 @@ class DonnateurDAO
 		return NULL;
 	}
 
+<<<<<<< HEAD
 	public function findDonateurInscrit($courriel,$MotDePasse) 
+=======
+	public function findDonateurInscrit($courriel,$MotDePasse)// a vérifier avec Manesh
+>>>>>>> TaharBranc
 	{	
         $db = Database::getInstance();
 
@@ -104,7 +114,7 @@ class DonnateurDAO
 	}
 
 	public function getTot_Donnateurs() // utile
-	{
+	{// cette fonction retourne le nombre de donateurs pour l'afficher dans la PageAdmin
 		$db = Database::getInstance();
 		$pstmt = $db->prepare("SELECT * FROM membre WHERE GROUP_ID = 5");
 		$pstmt->execute();		
@@ -113,6 +123,23 @@ class DonnateurDAO
 		return $count;
 	}
 	
+	public function findCompByName($nomComp) // utile
+	{// cette fonction verifie si la compagnie existe dans la BDD ou non(Controle_createDon.php)
+		$db = Database::getInstance();
+		$pstmt = $db->prepare("SELECT * FROM compagnie WHERE NOM = :x");
+		$pstmt->execute(array(':x' => $nomComp));
+		$result = $pstmt->fetch(PDO::FETCH_OBJ);
+		if ($result)
+		{
+			$c = new Compagnie();
+			$c->loadFromObject($result);
+			$pstmt->closeCursor();
+			return $c;
+		}
+		$pstmt->closeCursor();
+		Database::close();
+		return NULL;
+	}
 	
 }
 

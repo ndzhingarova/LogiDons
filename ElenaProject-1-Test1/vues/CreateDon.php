@@ -29,12 +29,12 @@ if (!ISSET($_SESSION))
                                              <input id="checkCompagnie" type="checkbox" name="checkCompagnie">                              
                                           </div> 
                                           <label class="control-label">Je suis une entreprise</label>  
-                        <!-- ---------- Debut Div Compagnie --------------------------------------->          
+                        <!-- ---------- Debut Div Compagnie ------------------------------------- -->          
                                           <div id="divCompagnie" class="form-group"  >
                                              <label class="control-label">Nom de l'entreprise</label>
                                              <input type="text" name="nomCompagnie" class="form-control"  >                                             
                                           </div>
-                        <!-- ----------- Fin Div Compagnie ----------------------------------------->                  
+                        <!-- ----------- Fin Div Compagnie --------------------------------------- -->                  
                                           <div class="form-group">
                                              <label class="control-label"><span id="nomContact">Nom du donateur</span></label>
                                              <input type="text" name="nomDontr" class="form-control"  >                                             
@@ -59,9 +59,9 @@ if (!ISSET($_SESSION))
                                                 <span>province</span>
                                                 <select name="province">
                                                     <option value="Alberta">Alberta</option><option value="Colombie-Britannique">Colombie-Britannique</option>
-                                                    <option value="Île-du-Prince-Édouard">Île-du-Prince-Édouard</option><option value=" Manitoba"> Manitoba</option>
-                                                    <option value="Nouveau-Brunswick">Nouveau-Brunswick</option><option value="Nouvelle-Écosse">Nouvelle-Écosse</option>
-                                                    <option value="Ontario">Ontario</option><option value="Québec">Québec</option>
+                                                    <option value="Île-du-Prince-Édouard">Ile-du-Prince-Edouard</option><option value=" Manitoba"> Manitoba</option>
+                                                    <option value="Nouveau-Brunswick">Nouveau-Brunswick</option><option value="Nouvelle-Écosse">Nouvelle-Ecosse</option>
+                                                    <option value="Ontario">Ontario</option><option value="Québec">Quebec</option>
                                                     <option value="Saskatchewan">Saskatchewan</option><option value="Terre-Neuve-et-Labrador">Terre-Neuve-et-Labrador</option>
                                                 </select>
                                             </div>
@@ -114,11 +114,11 @@ if (!ISSET($_SESSION))
                                             <label class="control-label">Mode de livraison</label>
                                             <div style="border:1.5px solid #e6e6e6;border-radius:5px; padding-top:5px;padding-left:30px;">
                                             <div>
-                                                <input id="id1" type="radio" name="ModeLivr" value="je vais deposer au centre">
+                                                <input id="id1" type="radio" name="ModeLivraison" value="je vais deposer au centre">
                                                 <label for="id1">je vais deposer au centre</label>
                                             </div>
                                             <div>
-                                                <input id="id2" type="radio" name="ModeLivr" value="vous devez passer chez moi">
+                                                <input id="id2" type="radio" name="ModeLivraison" value="vous devez passer chez moi">
                                                 <label for="id2">vous devez passer chez moi</label>
                                             </div>
                                             </div>

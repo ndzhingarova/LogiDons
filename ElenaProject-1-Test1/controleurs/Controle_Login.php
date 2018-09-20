@@ -1,3 +1,4 @@
+
 <?php
 if (!ISSET($_SESSION)) 
      session_start();
@@ -5,6 +6,22 @@ if (!ISSET($_SESSION))
 require_once('../modeles/classes/3-Membre.class.php');
 require_once('../modeles/config/MembreDAO.class.php');
 require_once('../modeles/config/Format.php');
+
+ $pageTitle = "";
+ include('../vues/header.php'); 
+?>
+<style>
+       body{
+    
+    background:url(../images/marbre.jpg) no-repeat center center fixed;
+    -webkit-background-size:cover;
+    -moz-background-size:cover;
+    -o-background-size:cover;
+    background-size:cover;  
+}
+   </style>
+<?php
+ include('../vues/navBar.php');
 
 // verification si la methode d'envoi est faite par le formulaire
 if($_SERVER['REQUEST_METHOD'] == 'POST')
@@ -29,16 +46,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
             $_SESSION['userId']   = $user->getid();
             
             if($user->getGroupId() == 1) // admin
-               {       
-                    $_SESSION['admin'] = "admin";                              
-                    header('Location: ../vues/PageAdmin.php');
-                    exit();
-               }
-            if($user->getGroupId() == 2) // superviseur
-               {                  
-                    header('Location: ../vues/PageSuperviser.php');
-                    exit();
-               }
+               {    
+                    $_SESSION['admin'] = "admin";                                                 
+                    $message = "Connection réussi.";
+                    $class   = "success";
+                    $url     = "../vues/PageAdmin.php";
+                    $nomPage = "la page Administrateur";   
+                    $format->redirect($message, $class, $url, $nomPage);                  
+               }         
             if($user->getGroupId() == 3) // employee (permanent ou volentaire)
                {    
                     $_SESSION['employe'] = "employe";              
@@ -48,15 +63,19 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
         }      
     else // les donnees ne sont pas valides ou il n'existe pas
         {
-            echo " infos erronnees.";
-            header('Location: ../vues/connexion.php');
-            exit();
-        }     
+            $message = "Les données ne sont pas valides.<br>Vérifier la syntaxe de vos identifiants";
+            $class   = "danger";
+            $url     = "../vues/connexion.php";
+            $nomPage = "la page de connection";   
+            $format->redirect($message, $class, $url, $nomPage); 
+        }            
 }
-else
+else // si la methode d'envoi n'est POST
 {
-    //  la methode d'envoi n'est POST ,
-    header('Location: ../vues/connexion.php');
-    exit();
+    $message = "Veuillez vous connectez par le formulaire.";
+    $class   = "danger";
+    $url     = "../vues/connexion.php";
+    $nomPage = "la page de connection";   
+    $format->redirect($message, $class, $url, $nomPage); 
 }
 ?>

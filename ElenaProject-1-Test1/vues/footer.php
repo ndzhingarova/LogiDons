@@ -5,5 +5,6 @@
 <script src="../ficiers-js/Page-admin-js.js"></script>
 <script src="../ficiers-js/PageMembre-js.js"></script>
 <script src="../ficiers-js/add_Item-js.js"></script>
+<script src="../ficiers-js/RedirectFunction.php"></script>
 </body>
 </html>
