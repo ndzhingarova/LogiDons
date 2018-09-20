@@ -2,20 +2,35 @@
 <?php
 
     require_once('../modeles/config/DonsDAO.class.php');
+    require_once('../modeles/config/DonnateurDAO.class.php');
     require_once('../modeles/config/Format.php');
     
     $pageTitle = "Tout Les Dons";
     include('header.php');  
     include('navBar.php');
 
-    $dao = new DonsDAO();
+    
 
-    // récupérer l'email du donateur
-    //$format   = new Format();
+
+    $dao = new DonsDAO();
+    $donateurDao = new DonnateurDAO();
+    //// récupérer l'email du donateur
+    $format   = new Format();
     //$courriel = $format->validation($_GET['email']);
+    $courriel = $_GET['email'];
+    // verifier si ce courriel existe ou pas dans la BDD
+    $donateur =  $donateurDao->findDonateurByEmail($courriel);
+    if($donateur == null)
+        {
+            $message = "pas de correspondance dans la base de donnees.<br>Veuillez verifier vos identifiants S.V.P.";
+            $class   = "danger";
+            $url     = "../vues/RechercheDon.php";
+            $nomPage = "la page de modification";   
+            $format->redirect($message, $class, $url, $nomPage); 
+        }
 
     //rechercher les dons qui appartiennent à ce donateur            
-    $tab_don = $dao->lesDonsDunDonateur($_SESSION['$courriel']);
+    $tab_don = $dao->lesDonsDunDonateur($courriel);
 ?>
 <html lang="en">
 <head>
@@ -69,8 +84,8 @@
         echo "<td>".$ligne['DATE_PROMESSE']."</td>";
         echo "<td>".$ligne['DATE_PROMISE']."</td>";
         echo "<td>
-            <a href='modifierDon.php?id=".$ligne['ID']."' class='btn btn-success'>Modifier</a>
-            <a href='../controleurs/Controle_DeleteDon.php?donID=".$ligne['ID']."'"."class='btn btn-danger confirm2'>Annuler ce don</a>
+            <a href='modifierDon.php?id=".$ligne['ID']."&email=".$courriel."' class='btn btn-success'>Modifier</a>
+            <a href='../controleurs/Controle_DeleteDon.php?donID=".$ligne['ID']."&email=".$courriel."'"."class='btn btn-danger confirm2'>Annuler ce don</a>
             </td>";
         echo "<tr>";
     }

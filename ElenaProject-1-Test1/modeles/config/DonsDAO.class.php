@@ -53,106 +53,10 @@ class DonsDAO
 
 			return $id_Emp_Suivant;
 		}
-<<<<<<< HEAD
-
-	public function trouverDonsDonateur($id){
-		$cnx = Database::getInstance();
-		try {
-			$liste = Array();//new Liste();
-		
-			$pstmt = $cnx->prepare("SELECT * FROM don WHERE MEMBRE_ID = :x");
-			$res = $pstmt->execute(array(':x' => $id));
-			$res = $pstmt->fetchAll	(PDO::FETCH_OBJ);
-			foreach($res as $row) {
-				$c = new Don();
-				$c->loadFromArray($row);
-				array_push($liste, $c); //$liste->add($c);
-			}
-			$pstmt->closeCursor();
-			Database::close();
-			return $liste;
-		} catch (PDOException $e) {
-			print "Error!: " . $e->getMessage() . "<br/>";
-			return $liste;
-		}	
-	}	
-
-		public function trouverDonParId($id){
-			$cnx = Database::getInstance();
-			try {		
-				$pstmt = $cnx->prepare("SELECT * FROM don where ID = :x");
-				$res = $pstmt->execute(array(':x' => $id));
-				$res = $pstmt->fetch(PDO::FETCH_OBJ);
-				if ($res){
-					$c = new LesDons();
-					$c->loadFromObject($res);
-					$pstmt->closeCursor();
-					Database::close();
-					return $c;
-				}
-			} catch (PDOException $e) {
-				print "Error!: " . $e->getMessage() . "<br/>";
-				return NULL;
-			}	
-
-		}	
-
-		public function accepterDon($id){
-			$cnx = Database::getInstance();
-			try {		
-				$pstmt = $cnx->prepare("UPDATE `don` SET `DATE_ACCEPTATION`= now() WHERE ID = :x");
-				$res = $pstmt->execute(array(':x' => $id));
-				return $res;
-			} catch (PDOException $e) {
-				print "Error!: " . $e->getMessage() . "<br/>";
-				return NULL;
-			}	
-		}
-
-		public function refuserDon($id){
-			$cnx = Database::getInstance();
-			try {		
-				$pstmt = $cnx->prepare("UPDATE `don` SET `DATE_REFUS`= now() WHERE ID = :x");
-				$res = $pstmt->execute(array(':x' => $id));
-				return $res;
-			} catch (PDOException $e) {
-				print "Error!: " . $e->getMessage() . "<br/>";
-				return NULL;
-			}	
-		}
-		
-		public function trouverDonsEmploye($idEmploye)
-		{
-			$cnx = Database::getInstance();
-			try {
-			$liste = Array();//new Liste();
-		
-			$pstmt = $cnx->prepare("SELECT * FROM don WHERE EMPLOYE_ID = :x  
-				and DATE_ANNULATION IS NULL and `DATE_ACCEPTATION` IS NULL AND `DATE_RECU` IS NULL AND `DATE_REFUS` IS NULL ");
-			$res = $pstmt->execute(array(':x' => $idEmploye));
-			$res = $pstmt->fetchAll	(PDO::FETCH_OBJ);
-		    foreach($res as $row) {
-				$c = new LesDons();
-				$c->loadFromObject($row);
-				array_push($liste, $c); //$liste->add($c);
-		    }
-			$pstmt->closeCursor();
-			Database::close();
-			return $liste;
-			} catch (PDOException $e) {
-				print "Error!: " . $e->getMessage() . "<br/>";
-				return $liste;
-			}	
-    	}	
-	
-	public function createDonAvecIdDonnateur($donateurID,$catDon,$nom,$DescDon,$qtt,$modeLivr,$montantDon,$dtPrm,$img) 
-		{
-=======
 	 
 	public function createDon1($donateurID,$emp_id,$catDon,$nom,$DescDon,$qtt,$modeLivr,$montantDon,$dtPrm,$img,$compID=null)
 		{ // pour inserer un Don dans la BDD
 		  // l'ID du prochain employé qui va le traiter, sera donné dans Controle_CreateDon.php
->>>>>>> TaharBranc
 			try
 			{
 				$conn  = Database::getInstance();
@@ -262,9 +166,10 @@ class DonsDAO
 			$stmt->closeCursor();
 			Database::close();			
 		}
-    public function updateDon($nomDon,$DescDon,$qttDon,$catDon,$ModeLivr,$montantDon,$datePrm,$img,$IdDon) 
+    public function updateDon($nomDon,$DescDon,$qttDon,$catDon,$ModeLivr,$montantDon,$datePromise,$img,$IdDon) 
 		{
-			$request = "UPDATE don SET CATEGORIE_ID = ".$catDon.", NOM = '".$nomDon."',DESCRIPTION = '".$DescDon."', QUANTITE = ".$qttDon.", MODE_LIVRAISON = '".$ModeLivr."', MONTANT = ".$montantDon.", DATE_PROMISE = '".$datePrm."', PHOTO = '".$img."' WHERE don.ID = ".$IdDon;
+			
+			$request = "UPDATE don SET CATEGORIE_ID = ".$catDon.", NOM = '".$nomDon."',DESCRIPTION = '".$DescDon."', QUANTITE = ".$qttDon.", MODE_LIVRAISON = '".$ModeLivr."', MONTANT = ".$montantDon.", DATE_PROMISE = '".$datePromise."', PHOTO = '".$img."' WHERE don.ID = ".$IdDon;
 			try
 			{
 				$conn = Database::getInstance();

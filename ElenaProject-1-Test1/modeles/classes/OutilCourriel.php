@@ -11,7 +11,7 @@
 use PHPMailer\PHPMailer\PHPMailer;
 class OutilCourriel {
 
-    public static function envoyer($courriel, $nomRecipient, $subject, $message){
+    public static function envoyer($courriel, $nomRecipient,$id){
  
 echo (extension_loaded('openssl')?'SSL loaded':'SSL not loaded')."\n"; 
 
@@ -61,12 +61,13 @@ $mail->addReplyTo('anotheroneniki@gmail.com', 'LogiDons');
 //Set who the message is to be sent to
 $mail->addAddress($courriel, $nomRecipient);
 //Set the subject line
-$mail->Subject = $subject;
+$mail->Subject = 'Vos dons aident';
 //Read an HTML message body from an external file, convert referenced images to embedded,
 //convert HTML into a basic plain-text alternative body
 //$mail->msgHTML(file_get_contents('../contents.html'), __DIR__);
 //Replace the plain text body with one created manually
-$mail->Body = $message;
+$mail->Body = 'Cher Donateur, Merci pour votre don. 
+Vous pouvez consulter vos dons toujour sur cette lien: http://localhost:7710/projetD/ElenaProject-1-Test1/controleurs/AfficherDonsDonateur.php?donateur='.$id;
 //Attach an image file
 //$mail->addAttachment('c:/Users/Public/Pictures/Sample Pictures/Tulips.jpg');
 //send the message, check for errors

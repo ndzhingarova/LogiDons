@@ -64,19 +64,11 @@ class DonnateurDAO
 		return NULL;
 	}
 
-<<<<<<< HEAD
-	public function findDonateurByID($id) // utile
-	{
-		$db = Database::getInstance();
-		$pstmt = $db->prepare("SELECT * FROM membre WHERE ID = :x");
-		$pstmt->execute(array(':x' => $id));
-=======
     public function findDonateurByNameByCourriel($nomComp, $courriel) // utile
 	{// cette fonction verifie si le nom du Contact de la compagnie existe dans la BDD ou non(Controle_createDon.php)
 		$db = Database::getInstance();
 		$pstmt = $db->prepare("SELECT * FROM membre WHERE NOM = :x AND COURRIEL = :y");
 		$pstmt->execute(array(':x' => $nomComp, ':y' => $courriel));
->>>>>>> TaharBranc
 		$result = $pstmt->fetch(PDO::FETCH_OBJ);
 		if ($result)
 		{
@@ -90,11 +82,7 @@ class DonnateurDAO
 		return NULL;
 	}
 
-<<<<<<< HEAD
-	public function findDonateurInscrit($courriel,$MotDePasse) 
-=======
 	public function findDonateurInscrit($courriel,$MotDePasse)// a vérifier avec Manesh
->>>>>>> TaharBranc
 	{	
         $db = Database::getInstance();
 

@@ -4,25 +4,37 @@ if (!ISSET($_SESSION))
 
 require_once('../modeles/config/Format.php');
 
-// verification si la methode d'envoi est faite par le formulaire
-if($_SERVER['REQUEST_METHOD'] == 'POST')
-{
-    // recuperation des donnees envoyees
+$pageTitle = "";
+include('../vues/header.php');  
+?>
+<style>
+    body{
+        
+        background:url(../images/marbre.jpg) no-repeat center center fixed;
+        -webkit-background-size:cover;
+        -moz-background-size:cover;
+        -o-background-size:cover;
+        background-size:cover;  
+        }
+</style>
+<?php
+include('../vues/navBar.php');
+
+   // recuperation des donnees envoyees
     $format   = new Format();
     $id       = $format->validation($_POST['idDon']);
     $courriel = $format->validation($_POST['email']);
- 
-    $_SESSION['$courriel'] = $courriel;
-    
-    if(isset($_POST['sub1']))
-      {
-       
-         header("Location: ../vues/modifierDon.php?id=".$id);
+
+// verification si la methode d'envoi est faite par le formulaire
+if($_SERVER['REQUEST_METHOD'] == 'POST')
+{
+    if(isset($_POST['rechercher']))
+      {     
+         header("Location: ../vues/modifierDon.php?id=".$id."&email=".$courriel);
       }
-    if(isset($_POST['sub2']))
-      {
-       
-         header("Location: ../vues/TousLesDons.php?");
+    if(isset($_POST['afficher']))
+      {    
+         header("Location: ../vues/TousLesDons.php?email=".$courriel);
       }
 }
 else

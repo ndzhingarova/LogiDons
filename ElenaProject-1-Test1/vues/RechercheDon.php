@@ -62,9 +62,9 @@ if (!isset($_SESSION))
 
                     <div class="form-group">
                         <div class="col-md-8">
-                            <input class="btn btn-info col-md-2" type="submit" value="Rechercher ce Don" ng-disabled="frm.$invalid" name="sub1">
+                            <input class="btn btn-info col-md-2" type="submit" value="Rechercher ce Don" ng-disabled="frm.$invalid" name="rechercher" style="width:150px;">
                         </div>
-                        <input class="btn btn-info col-md-2" type="submit" value="Afficher mes Dons" ng-disabled="frm.$invalid" name="sub2">
+                        <input class="btn btn-info col-md-2" type="submit" value="Afficher mes Dons" ng-disabled="frm.$invalid" name="afficher">
                     </div>
                 </form>
             </div>

@@ -31,7 +31,7 @@ include('../vues/navBar.php');
         $catDon     = $format->validation($_POST['catDon']);      //la categorie du don
         $ModeLivr   = $format->validation($_POST['ModeLivr']);    //le mode de livraison
         $montantDon = $format->validation($_POST['montantDon']);  //le montant du don
-        $datePrm    = $format->validation($_POST['datePrm']);     //la date promise
+        $datePromise= $format->validation($_POST['datePrm']);     //la date promise
         //verifier est-ce qu'il a change la photo ou pas
         $img = "";
         if($_FILES['imgNew']['name'] == '')
@@ -44,6 +44,22 @@ include('../vues/navBar.php');
             $img = $format->validation($_FILES['imgNew']['name']);    // nom de l'image envoyée
             // supprimmer l'ancienne photo et envoyer la nouvelle photo dans le dossier Upload
         }
+
+
+        if ($catDon == "ameublement")
+        {
+            $catDon = 1;
+        }elseif ($catDon == "monnaie")
+        {
+            $catDon = 2;
+        }elseif ($catDon == "electroniques")
+        {
+            $catDon = 3;
+        }else
+        {
+            $catDon = 4;
+        }
+            
 /*       
         echo "id du don : ".$IdDon.'<br>';
         echo "nom du don : ".$nomDon.'<br>';
@@ -57,13 +73,13 @@ include('../vues/navBar.php');
         echo "le nouveau nom de l'image : ".$img.'<br>';  
 */
         $donDao = new DonsDAO();            
-        $donDao->updateDon($nomDon,$DescDon,$qttDon,$catDon,$ModeLivr,$montantDon,$datePrm,$img,$IdDon);
+        $donDao->updateDon($nomDon,$DescDon,$qttDon,$catDon,$ModeLivr,$montantDon,$datePromise,$img,$IdDon);
 
         $message = "Les modifications ont étés effectuées avec succes.";
         $class   = "success";
-        $url     = "../vues/TousLesDons.php";
+        $url     = "../vues/TousLesDons.php?email=".$_POST['email'];
         $nomPage = "la page de vos dons";   
-        $format->redirect($message, $class, $url, $nomPage,5);  
+        $format->redirect($message, $class, $url, $nomPage);  
     }
     else // si la methode d'envoi n'est pas POST
     {

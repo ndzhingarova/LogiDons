@@ -29,7 +29,7 @@ if(isset($_GET['donID']) && is_numeric($_GET['donID']))
 
     $message = "Le don a été supprimmé avec succes.";
     $class   = "success";
-    $url     = "../vues/TousLesDons.php";
+    $url     = "../vues/TousLesDons.php?email=".$_GET['email'];
     $nomPage = "vos dons.";   
     $format->redirect($message, $class, $url, $nomPage);
 }

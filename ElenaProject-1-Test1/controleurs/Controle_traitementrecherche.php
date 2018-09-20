@@ -10,7 +10,7 @@ class Controle_Chercher_Don
    if($_SERVER['REQUEST_METHOD'] == 'GET')
         {
             $id       = $_GET['id'];
-            $courriel = $_SESSION['$courriel'];
+            $courriel = $_GET['email'];
             // verifier si le donateur existe(on aura un tableau qui contient le detail du Don)
             // ou null (s'il n'existe pas)
             $dao = new DonsDAO();
