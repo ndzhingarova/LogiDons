@@ -71,7 +71,7 @@ if (!isset($_SESSION))
                 <!-- --------------------------------------------------------------------------- -->                                             
                             <div class="form-group">
                                 <label class="control-label">Date Promise</label>                     
-                                <input type="date" name="datePrm" class="form-control" value="<?php echo $tab_Don['DATE_PROMISE']; ?>" >                           
+                                <input type="date" name="datePrm" class="form-control" value="<?php echo $tab_Don['DATE_PROMISE']; ?>" required >                           
                             </div>
                 <!-- --------------------------------------------------------------------------- -->               
                 <div class="form-group form-group-lg">
@@ -114,17 +114,17 @@ if (!isset($_SESSION))
                 <!-- --------------------------------------------------------------------------- -->            
                             <div class="form-group">
                                 <label class="control-label">Nom du Don</label>
-                                <input type="text" name="nomDon" class="form-control" value="<?php echo $tab_Don['NOM']; ?>" >
+                                <input type="text" name="nomDon" class="form-control" value="<?php echo $tab_Don['NOM']; ?>" required>
                             </div>
                 <!-- --------------------------------------------------------------------------- -->            
                             <div class="form-group">
                                 <label class="control-label">Quantite</label>
-                                <input type="number" name="qttDon" class="form-control" value="<?php echo $tab_Don['QUANTITE']; ?>" >
+                                <input type="number" name="qttDon" class="form-control" value="<?php echo $tab_Don['QUANTITE']; ?>" required >
                             </div>
                 <!-- --------------------------------------------------------------------------- -->
                 <div class="form-group">
                                 <label class="control-label">Categorie du Don</label>                          
-                                <select name="catDon" class="form-control" >
+                                <select name="catDon" class="form-control" required>
                                     <option><?php
                                                 if($tab_Don['CATEGORIE_ID'] == 1) {echo "ameublement";}
                                                 else if($tab_Don['CATEGORIE_ID'] == 1) {echo "monnaie";}
@@ -143,13 +143,13 @@ if (!isset($_SESSION))
                 <!-- --------------------------------------------------------------------------- -->            
                             <div class="form-group">
                                 <label class="control-label">Description</label>
-                                <textarea class="form-control" name="DescDon" rows="3" ><?php echo $tab_Don['DESCRIPTION']; ?></textarea>
+                                <textarea class="form-control" name="DescDon" rows="3" required><?php echo $tab_Don['DESCRIPTION']; ?></textarea>
                             </div>
                 <!-- --------------------------------------------------------------------------- --> 
                            
                             <div class="form-group">
                                 <label class="control-label">Montant du Don</label>
-                                <input type="number" name="montantDon" class="form-control" value="<?php echo $tab_Don['MONTANT']; ?>" >
+                                <input type="number" name="montantDon" class="form-control" value="<?php echo $tab_Don['MONTANT']; ?>" required>
                             </div>
                 <!-- --------------------------------------------------------------------------- -->         
                                       </div>

@@ -18,7 +18,7 @@ include('../vues/header.php');
 </style>
 <?php
 include('../vues/navBar.php'); 
-
+$donDao = new DonsDAO();
     // verifier si la methode d'envoi est faite par le formulaire
     if($_SERVER['REQUEST_METHOD'] == 'POST')
     { 
@@ -43,35 +43,17 @@ include('../vues/navBar.php');
         {
             $img = $format->validation($_FILES['imgNew']['name']);    // nom de l'image envoyée
             // supprimmer l'ancienne photo et envoyer la nouvelle photo dans le dossier Upload
+            $oldPhoto = "../uploads/".$_POST['imgOld'];
+            unlink($oldPhoto);
+           // $nom = 'imgNew';
+            $img = $donDao->traiterImage('imgNew');
         }
 
 
-        if ($catDon == "ameublement")
-        {
-            $catDon = 1;
-        }elseif ($catDon == "monnaie")
-        {
-            $catDon = 2;
-        }elseif ($catDon == "electroniques")
-        {
-            $catDon = 3;
-        }else
-        {
-            $catDon = 4;
-        }
-            
-/*       
-        echo "id du don : ".$IdDon.'<br>';
-        echo "nom du don : ".$nomDon.'<br>';
-        echo "description du don : ".$DescDon.'<br>';
-        echo "la quantite du don ".$qttDon.'<br>';
-        echo "la categorie du don : ".$catDon.'<br>';
-        echo "le mode de livraison : ".$ModeLivr.'<br>';
-        echo "le montant : ".$montantDon.'<br>';
-        echo "la date promise : ".$datePrm.'<br>';
-        echo "l'ancien nom de l'image : ".$_POST['imgOld'].'<br>';
-        echo "le nouveau nom de l'image : ".$img.'<br>';  
-*/
+        if ($catDon == "ameublement")       {$catDon = 1;}
+        elseif ($catDon == "monnaie")       {$catDon = 2;}
+        elseif ($catDon == "electroniques") {$catDon = 3;}else { $catDon = 4; }
+
         $donDao = new DonsDAO();            
         $donDao->updateDon($nomDon,$DescDon,$qttDon,$catDon,$ModeLivr,$montantDon,$datePromise,$img,$IdDon);
 

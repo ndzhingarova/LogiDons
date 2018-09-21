@@ -32,32 +32,32 @@ if (!ISSET($_SESSION))
                         <!-- ---------- Debut Div Compagnie ------------------------------------- -->          
                                           <div id="divCompagnie" class="form-group"  >
                                              <label class="control-label">Nom de l'entreprise</label>
-                                             <input type="text" name="nomCompagnie" class="form-control"  >                                             
+                                             <input type="text" name="nomCompagnie" class="form-control" autocomplete="off" >                                             
                                           </div>
                         <!-- ----------- Fin Div Compagnie --------------------------------------- -->                  
                                           <div class="form-group">
                                              <label class="control-label"><span id="nomContact">Nom du donateur</span></label>
-                                             <input type="text" name="nomDontr" class="form-control"  >                                             
+                                             <input type="text" name="nomDontr" class="form-control" autocomplete="off" required >                                             
                                           </div>
                         <!-- ------------------------------------------------------------------- -->                  
                                           <div class="form-group">
                                              <label class="control-label">Email</label>
-                                             <input type="email" name="courriel" class="form-control"  >
+                                             <input type="email" name="courriel" class="form-control" autocomplete="off" required >
                                           </div>
                         <!-- ------------------------------------------------------------------- -->                  
                                           <div class="form-group">
                                              <label class="control-label">Telephone</label>
-                                             <input type="text" name="tel" class="form-control"  >
+                                             <input type="text" name="tel" class="form-control" autocomplete="off" required >
                                           </div> 
                         <!-- ------------------------------------------------------------------- -->
                                           <div class="adresseDonateur form-group form-group-lg">
                                             <label class="control-label">Adresse</label>
                                             <div class="divAdresse">                                               
-                                                <span>adresse      </span> <input type="text" name="adresse"><br>
-                                                <span>ville        </span> <input type="text" name="ville"><br>
-                                                <span>code postale </span> <input type="text" name="codePostale"><br>
+                                                <span>adresse      </span> <input type="text" name="adresse" autocomplete="off" required ><br>
+                                                <span>ville        </span> <input type="text" name="ville" autocomplete="off" required ><br>
+                                                <span>code postale </span> <input type="text" name="codePostale"autocomplete="off" required ><br>
                                                 <span>province</span>
-                                                <select name="province">
+                                                <select name="province" required>
                                                     <option value="Alberta">Alberta</option><option value="Colombie-Britannique">Colombie-Britannique</option>
                                                     <option value="Île-du-Prince-Édouard">Ile-du-Prince-Edouard</option><option value=" Manitoba"> Manitoba</option>
                                                     <option value="Nouveau-Brunswick">Nouveau-Brunswick</option><option value="Nouvelle-Écosse">Nouvelle-Ecosse</option>
@@ -82,17 +82,17 @@ if (!ISSET($_SESSION))
                                       <div class='panel-body'>
                                         <div class="form-group">
                                             <label class="control-label">Nom du Don</label>
-                                            <input type="text" name="nomDon" class="form-control" >
+                                            <input type="text" name="nomDon" class="form-control" autocomplete="off" required >
                                         </div>
                         <!-- ------------------------------------------------------------------- -->                
                                         <div class="form-group">
                                             <label class="control-label">Quantite</label>
-                                            <input type="number" name="qttDon" class="form-control">
+                                            <input type="number" name="qttDon" class="form-control" required >
                                         </div>
                         <!-- ------------------------------------------------------------------- -->                
                                         <div class="form-group">
                                             <label class="control-label">Categorie du Don</label>                          
-                                            <select name="catDon" class="form-control" >
+                                            <select name="catDon" class="form-control" required>
                                             <option></option>
                                                     <?php
                                                         $catdao = new CategorieDAO();       
@@ -100,14 +100,14 @@ if (!ISSET($_SESSION))
                                                         foreach($tab_Cat as $ligne)
                                                         {
                                                             echo "<option value='".$ligne['ID']."'>".$ligne['NOM']."</option>";
-                                                        } //autocomplete="off"
+                                                        } 
                                                     ?>   
                                             </select>                  
                                         </div>
                         <!-- ------------------------------------------------------------------- -->                
                                         <div class="form-group">
                                             <label class="control-label">Description</label>
-                                            <textarea class="form-control" name="DescDon" rows="3" ></textarea>
+                                            <textarea class="form-control" name="DescDon" rows="3" required ></textarea>
                                         </div>
                         <!-- ------------------------------------------------------------------- -->                
                                         <div class="form-group form-group-lg">
@@ -126,17 +126,17 @@ if (!ISSET($_SESSION))
                         <!-- ------------------------------------------------------------------- -->                    
                                         <div class="form-group">
                                             <label class="control-label">Montant du Don</label>
-                                            <input type="number" name="montantDon" class="form-control"  >
+                                            <input type="number" name="montantDon" class="form-control" required >
                                         </div>
                         <!-- ------------------------------------------------------------------- -->                    
                                         <div class="form-group">
                                             <label class="control-label">Photo du Don(si disponible)</label>                     
-                                            <input type="file" name="img" class="form-control" >                           
+                                            <input type="file" name="img" class="form-control">                           
                                         </div>
                         <!-- ------------------------------------------------------------------- -->                    
                                         <div class="form-group">
                                             <label class="control-label">Date Promise</label>                     
-                                            <input type="date" name="dateDon" class="form-control"  >                           
+                                            <input type="date" name="dateDon" class="form-control" required >                           
                                         </div>
                         <!-- ------------------------------------------------------------------- -->                    
                                       </div>

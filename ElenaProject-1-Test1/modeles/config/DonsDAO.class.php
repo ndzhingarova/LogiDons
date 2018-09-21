@@ -82,6 +82,17 @@ class DonsDAO
 			}
 		}		
 
+	public function traiterImage($nom) // utile
+	    {// pour traiter l'image envoyee par le donateur
+		   $file_name = $_FILES[$nom]['name'];                   // nom de l'image envoye
+		   $fichierTemp = $_FILES[$nom]['tmp_name'];             // le nom du dossier temporaire
+           $div = explode('.', $file_name);
+           $file_ext = strtolower(end($div));
+           $nomImage = substr(md5(time()), 0, 10).'.'.$file_ext; // le nom de l'image qui sera stocke          
+		   move_uploaded_file($fichierTemp, '../uploads/'.$nomImage);		   
+		   return $nomImage;
+		}
+		
 	public function getTot_Dons() // utile
 		{ // cette fonction retourne le nombre des Dons pour l'afficher dans la PageAdmin
 			$db = Database::getInstance();
