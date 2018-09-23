@@ -1,19 +1,14 @@
 <?php
 
 //TABLEAU IMAGE ALEATOIRE DON1
-$descDon1='Merci à tous nos donateurs grâce à vous nous procurons du sourire et sauvons des vies';
+$descDon1='';
 $imagesDon1 = array(
-    array('file' => 'dons1', 'caption' => $descDon1),
-    array('file' => 'dons2', 'caption' => $descDon1),
-    array('file' => 'dons3', 'caption' => $descDon1),
-    array('file' => 'dons4','caption' => $descDon1),
-    array('file' => 'dons5','caption' => $descDon1),
-    array('file' => 'dons6', 'caption' => $descDon1),
-    array('file' => 'dons7', 'caption' => $descDon1),
-    array('file' => 'dons8', 'caption' => $descDon1),
-    array('file' => 'dons9','caption' => $descDon1),
-    array('file' => 'dons10','caption' => $descDon1),
-    array('file' => 'dons10','caption' => $descDon1)
+   /* array('file' => 'don11', 'caption' => $descDon1),
+    array('file' => 'don22', 'caption' => $descDon1),
+    array('file' => 'faire1', 'caption' => $descDon1),
+    array('file' => 'faire2', 'caption' => $descDon1),*/
+    array('file' => 'faire4', 'caption' => $descDon1)
+   // array('file' => 'faire5', 'caption' => $descDon1)
     );
     
     $iDon1 = rand(0, count( $imagesDon1)-1);

@@ -5,9 +5,8 @@
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-   
    <link rel="stylesheet" href="PageAccueilSiteDon/CSS/style.css">
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
@@ -16,22 +15,22 @@
 </head>
 <body >
   
-<div class="container-fluid">
+    <div class="container-fluid  " >
         <div class="row">
          <!-- ASIDE LEFT -->
             <div class="col-sm-2">
                 <aside>         
-                 <h1 class="text-success">Catégorie de dons</h1>
+                 <h2 class="text-success">Catégorie de dons</h2>
                     <table>
-                    <th class="text-danger"><h2>Argent</h2></th>
+                    <th class="text-info"><h3>Argent: </h3></th>      
                     <tr>
                     <td> 
                         <div  class="view overlay">
                             <?php 
                             require_once('./PageAccueilSiteDon/includes/imageAleatoireArgent.php');
                             if (isset($imageSize)) { ?> 
-                                <img src="<?php echo  $selectedImageArgent;  ?>" alt="image aléatoire"  class="img-fluid "<?php echo $imageSize[3];?>>
-                                <a href="#"   data-toggle="modal" data-target=".modal-argent"><h3>Details...</h3></a>
+                            <a href="#"  data-toggle="modal" data-target=".modal-argent"><img src="<?php echo  $selectedImageArgent;  ?>" alt="image aléatoire"  class="img-fluid "<?php echo $imageSize[0];?>></a>                               
+                                
                                         <div class="modal fade modal-argent" tabindex="-1"role="dialog" aria-labelledby="mySmallModalLabel">
                                             <div class="modal-dialog modal-sm">
                                                 <div class="modal-content">
@@ -47,15 +46,14 @@
                     </tr>
                     </table>
                     <table >
-                        <th class="text-danger"><h2> Vêtement</h2></th>
+                        <th class="text-info"><h3> Vêtement:</h3></th>                        
                         <tr>
                             <td> 
                                 <div class="view overlay">
                                     <?php 
                                     require_once('./PageAccueilSiteDon/includes/imageAleatoireVetement.php');
                                     if (isset($imageSize)) { ?> 
-                                        <img src="<?php echo $selectedImageVet;?>" alt="image aléatoire" class="img-fluid "<?php echo $imageSize[3]; ?>>
-                                        <a href="#"   data-toggle="modal" data-target=" .modal-vetement"><h3>Details...</h3></a>
+                                    <a href="#" data-toggle="modal" data-target=" .modal-vetement"><img src="<?php echo $selectedImageVet;?>" alt="image aléatoire" class="img-fluid "<?php echo $imageSize[0]; ?>></a> 
                                         <div class="modal fade modal-vetement" tabindex="-1"role="dialog" aria-labelledby="mySmallModalLabel">
                                             <div class="modal-dialog modal-sm">
                                                 <div class="modal-content">
@@ -71,15 +69,15 @@
                         </tr>
                     </table>
                     <table>
-                        <th class="text-danger"><h2>Agroalimentaire</h2> </th>
+                        <th class="text-info"><h3>Agroalimentaire: </h3> </th>         
                         <tr>
                             <td> 
                                 <div class="view overlay"> 
                                     <?php 
                                         require_once('./PageAccueilSiteDon/includes/imageAleatoireAgro.php');
                                         if (isset($imageSize)) { ?> 
-                                            <img src="<?php echo $selectedImageAgro;  ?>"alt="image aléatoire"  class="img-fluid "<?php echo $imageSize[3];?>>
-                                            <a href="#"   data-toggle="modal" data-target=" .modal-agro"><h3>Details...</h3></a>
+                                        <a href="#" data-toggle="modal" data-target=" .modal-agro"> <img src="<?php echo $selectedImageAgro;  ?>"alt="image aléatoire"  class="img-fluid "<?php echo $imageSize[0];?>>  </a>
+                                                                 
                                             <div class="modal fade modal-agro" tabindex="-1"role="dialog" aria-labelledby="mySmallModalLabel">
                                                 <div class="modal-dialog modal-sm">
                                                     <div class="modal-content">
@@ -95,15 +93,15 @@
                         </tr>
                     </table>
                     <table>
-                        <th class="text-danger"> <h2> Électromenager</h2></th>
+                        <th class="text-info"> <h3> Électromenager: </h3></th>                        
                         <tr>
                             <td> 
                                 <div class="view overlay"> 
                                     <?php 
                                     require_once('./PageAccueilSiteDon/includes/imageAleatoireElectro.php');
                                     if (isset($imageSize)) { ?> 
-                                        <img src="<?php echo  $selectedImageElectro ;  ?>" alt="image aléatoire"  class="img-fluid "<?php echo $imageSize[3]; ?>>
-                                        <a href="#"   data-toggle="modal" data-target=".modal-electro"><h3>Details...</h3></a>
+                                    <a href="" data-toggle="modal" data-target=".modal-electro"> <img src="<?php echo  $selectedImageElectro ;  ?>" alt="image aléatoire"  class="img-fluid "<?php echo $imageSize[0]; ?>></a>
+                                                                              
                                         <div class="modal fade modal-electro" tabindex="-1"role="dialog" aria-labelledby="mySmallModalLabel">
                                             <div class="modal-dialog modal-sm">
                                                 <div class="modal-content">
@@ -122,19 +120,22 @@
                 </aside>
             </div>
              <!-- SECTION BODY -->
-                <div class="col-sm-8" id="imageHeader" >
-                    <header >
-                        <h1 align="center" class="text-warning"><strong>FONDATION COEUR-ESPOIR</strong> </h1>
-                        <img src="" alt="" srcset="">
-                    </header>
+                <div class="col-xs-8 col-xs-12 " id="imageHeader" >
+                <div id="logo" class="row">
+            <div  class="col-md-12">
+                <header >
+                    <h1 align="center" class="text-warning"><strong>FONDATION COEUR-ESPOIR</strong> </h1>
+                </header>
+            </div>
+        </div>
                     <section>
                         <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-xs-6 col-xs-12 col-md-offset-3">
                                 <div class="view overlay"> 
                                     <?php 
                                         require_once('./PageAccueilSiteDon/includes/imageAleatoireDon.php');
                                         if (isset($imageSize)) { ?> 
-                                            <img src="<?php echo  $selectedImageDon ;  ?>" alt="image aléatoire"  class="img-fluid "<?php echo $imageSize[3]; ?>>                                   
+                                            <img src="<?php echo  $selectedImageDon ;  ?>" alt="image aléatoire"  class="img-fluid "<?php echo $imageSize[0]; ?>>                                   
                                            
                                     <?php }?>                                 
                                 </div>
@@ -159,14 +160,14 @@
                                 </div>  
                             </div>
                             <div class="col-sm-2" ></div>
-                            <div class="col-sm-5" >
+                            <div class="col-xs-5 col-xs-12 col-md-offset-3" >
                                 <div class="view overlay"> 
                                     <?php 
                                     require_once('./PageAccueilSiteDon/includes/imageAleatoireDon1.php');
                                     if (isset($imageSize)) { ?> 
-                                        <img src="<?php echo  $selectedImageDon1 ;  ?>" alt="image aléatoire"  class="img-fluid "<?php echo $imageSize[3]; ?>>
+                                    <a href="./vues/CreateDon.php"><img src="<?php echo  $selectedImageDon1 ;  ?>" alt="image aléatoire"  class="img-fluid "<?php echo $imageSize[0]; ?>></a>
                                         <div class="alert alert-warning" role="alert">
-                                             <span class="alert-link text-danger"><h2><?php echo $caption; ?></h2></span>
+                                             <span class="alert-link text-info"><h2><?php echo $caption; ?></h2></span>
                                             </div> 
                                     <?php } ?> 
                                     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target=".modal-merci">
@@ -174,93 +175,33 @@
                                     </button>                                   
                                 </div>
                             </div>
-                        </section>
-                        <section>
-                        <div id="modal-modifier-don" class="modal fade  bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" ng-controller="studentController">
-                            <div class="modal-dialog  modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                          <h1 class="modal-title text-danger">Modifier Don</h1>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form action="">
-                                                <div class="form-group row">
-                                                <table class="table table-dark">
-                                                    <thead>
-                                                        <th><h2>Email</h2></th>
-                                                        <th><h2>Valider</h2></th>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="col-sm-10">
-                                                                    <input class="form-control form-control-lg" type="email" placeholder="Enter Email">
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="col-sm-2">
-                                                                <button type="button" class="btn btn-success" form-control-lg ><h2>soumettre</h2></button>
-                
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>                                                                                                   
-                                                </div>                                                                                        
-                                            </form>                       
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal"><h2>Close</h2></button>
-                                            <button type="button" class="btn btn-primary"><h2>Save</h2> </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    </div>              
-                  
+                        </div>
+                    </section>         
+                </div>   
             <!-- ASIDE RIGTH -->
-            <div class="col-sm-2">
-                <aside>
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-modifier-don">Modifier Don</button>
-                    <div class="view overlay">                
-                        <div class="mask flex-center rgba-green-slight">
-                                <h1  class="text-success">Comment proposer un don </h1>
+                <div class="col-xs-2">
+                    <aside>
+                        <div class="view overlay">                
+                            <div class="mask flex-center rgba-green-slight">
+                                <h2  class="text-success">Modifier un don </h2>
                                 <ul class="text-info" >
-                                    <li><h2>Entrer votre email</h2>
+                                    <li><h3>Entrer votre email</h3>
                                         <div class="view overlay"> 
                                             <?php 
                                             require_once('./PageAccueilSiteDon/includes/imageAleatoireEmail.php');
                                             if (isset($imageSize)) { ?> 
-                                            <img src="<?php echo  $selectedImageEmail ;  ?>" alt="image aléatoire"  class="img-fluid "<?php echo $imageSize[3]; ?>>
+                                            <img src="<?php echo  $selectedImageEmail ;  ?>" alt="image aléatoire"  class="img-fluid "<?php echo $imageSize[0]; ?>>
                                             <div class="mask flex-center rgba-green-light">
                                                 <p id="caption" class="text-danger"><?php echo $caption; ?></p>
                                             </div> 
                                             <?php } ?>  
                                         </div>
                                     </li>
-                                    <li><h2>Faire un dons</h2>
-                                        <div class="view overlay"> 
-                                            <?php 
-                                            require_once('./PageAccueilSiteDon/includes/imageAleatoireFaire.php');
-                                            if (isset($imageSize)) { ?> 
-                                                <img src="<?php echo  $selectedImageFaire ;  ?>" alt="image aléatoire"  class="img-fluid "<?php echo $imageSize[3]; ?>>
-                                                <div class="mask flex-center rgba-green-light">
-                                                <p id="caption" class="text-danger"><?php echo $caption; ?></p>
-                                                </div> 
-                                            <?php } ?> 
-                                        </div>
-                                    </li>
                                 </ul>
-                                <img src="https://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img%20(12).jpg" class="img-fluid " alt="">
-                            </p>
+                            </div>
                         </div>
-                    </div>
-                </aside>
-            </div>
+                    </aside>
+                </div>
         </div>
     </div>
     

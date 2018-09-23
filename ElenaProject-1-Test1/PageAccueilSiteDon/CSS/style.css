@@ -1,3 +1,6 @@
+
+
+
 #imageHeader{
     background-image: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full page/img(24).jpg");
     /* Control the height of the image */
@@ -9,6 +12,7 @@
     background-repeat: no-repeat;
     background-size: cover; 
 } 
+
 
 /*
 .text-infos{ float: right;}
