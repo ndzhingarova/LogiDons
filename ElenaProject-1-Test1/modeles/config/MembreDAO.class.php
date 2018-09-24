@@ -162,6 +162,22 @@ class MembreDAO
 		}
 	}
 
+	public function updateBenevole($ADRESSE, $VILLE, $PROVINCE, $CODE_POSTALE, $TELEPHONE,$COURRIEL) 
+	{  	
+		try
+		{
+			$conn  = Database::getInstance();	
+			$pstmt = $conn->prepare(" UPDATE membre SET ADRESSE = ?, VILLE = ?, PROVINCE = ?, CODE_POSTALE = ? , TELEPHONE = ? WHERE COURRIEL = ? ");
+			$pstmt->execute(array($ADRESSE, $VILLE, $PROVINCE, $CODE_POSTALE, $TELEPHONE, $COURRIEL ));		
+		    $pstmt->closeCursor();
+		    Database::close();			
+		}
+		catch(PDOException $e)
+		{
+			throw $e;
+		}
+	}
+
 	public function tot_Volentaires() // utile
 	{// chercher le nombre totale des volentaires pour l'afficher dans la PageAdmin
 		$db = Database::getInstance();

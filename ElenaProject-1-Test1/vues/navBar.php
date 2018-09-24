@@ -59,7 +59,7 @@
 												   ria-expanded='false'>".$_SESSION['userName']."<span class='caret'></span>
 										</a>
 										<ul class='dropdown-menu'>
-											<li><a href='#'>Modifier profile </a></li>
+											
 											<li><a href='".$cheminLogout."controleurs/Controle_logout.php'>LogOut</a></li>
 										</ul>
 									</li>

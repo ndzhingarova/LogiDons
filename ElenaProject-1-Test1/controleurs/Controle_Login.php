@@ -43,6 +43,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
             $_SESSION['connected'] = true;
             $_SESSION['userName'] = $user->getNom();
             $_SESSION['userId']   = $user->getid();
+            $_SESSION['userCourriel'] = $user->getCourriel();
             
             if($user->getGroupId() == 1) // admin
                {    
@@ -57,7 +58,19 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                {                  
                     header('Location: ../vues/PageEmploye.php');
                     exit();
-               }             
+               }  
+             if($user->getGroupId() == 4 && $user->getEtat()==1) // employee (permanent ou volentaire)
+               {                  
+                    header('Location: ../vues/GestionBenevole.php');
+                    exit();
+               }else
+               {
+                $message = "Vous n'êtes plus actif.<br>Veuiller activer votre compte";
+                $class   = "danger";
+                $url     = "../vues/connexion.php";
+                $nomPage = "la page de connection";   
+                $format->redirect($message, $class, $url, $nomPage);
+               }                  
         }      
     else // les donnees ne sont pas valides ou il n'existe pas
         {
