@@ -191,6 +191,74 @@ class DonsDAO
 				throw $e;
 			}			
 		}
+
+		public function trouverDonsEmploye($idEmploye)
+		{
+			$cnx = Database::getInstance();
+			try {
+			$liste = Array();//new Liste();
+		
+			$pstmt = $cnx->prepare("SELECT * FROM don WHERE EMPLOYE_ID = :x  
+				and DATE_ANNULATION IS NULL and `DATE_ACCEPTATION` IS NULL AND `DATE_RECU` IS NULL AND `DATE_REFUS` IS NULL ");
+			$res = $pstmt->execute(array(':x' => $idEmploye));
+			$res = $pstmt->fetchAll	(PDO::FETCH_OBJ);
+		    foreach($res as $row) {
+				$c = new LesDons();
+				$c->loadFromObject($row);
+				array_push($liste, $c); //$liste->add($c);
+		    }
+			$pstmt->closeCursor();
+			Database::close();
+			return $liste;
+			} catch (PDOException $e) {
+				print "Error!: " . $e->getMessage() . "<br/>";
+				return $liste;
+			}	
+		}	
+		
+		public function trouverDonParId($id){
+			$cnx = Database::getInstance();
+			try {		
+				$pstmt = $cnx->prepare("SELECT * FROM don where ID = :x");
+				$res = $pstmt->execute(array(':x' => $id));
+				$res = $pstmt->fetch(PDO::FETCH_OBJ);
+				if ($res){
+					$c = new LesDons();
+					$c->loadFromObject($res);
+					$pstmt->closeCursor();
+					Database::close();
+					return $c;
+				}
+			} catch (PDOException $e) {
+				print "Error!: " . $e->getMessage() . "<br/>";
+				return NULL;
+			}	
+
+		}	
+
+		public function accepterDon($id){
+			$cnx = Database::getInstance();
+			try {		
+				$pstmt = $cnx->prepare("UPDATE `don` SET `DATE_ACCEPTATION`= now() WHERE ID = :x");
+				$res = $pstmt->execute(array(':x' => $id));
+				return $res;
+			} catch (PDOException $e) {
+				print "Error!: " . $e->getMessage() . "<br/>";
+				return NULL;
+			}	
+		}
+
+		public function refuserDon($id){
+			$cnx = Database::getInstance();
+			try {		
+				$pstmt = $cnx->prepare("UPDATE `don` SET `DATE_REFUS`= now() WHERE ID = :x");
+				$res = $pstmt->execute(array(':x' => $id));
+				return $res;
+			} catch (PDOException $e) {
+				print "Error!: " . $e->getMessage() . "<br/>";
+				return NULL;
+			}	
+		}
 }
 
 ?>

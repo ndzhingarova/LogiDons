@@ -29,6 +29,24 @@ class DonnateurDAO
 		}
 	}
 
+	public function findDonateurByID($id) // utile
+	{
+		$db = Database::getInstance();
+		$pstmt = $db->prepare("SELECT * FROM membre WHERE ID = :x");
+		$pstmt->execute(array(':x' => $id));
+		$result = $pstmt->fetch(PDO::FETCH_OBJ);
+		if ($result)
+		{
+			$c = new Donnateur();
+			$c->loadFromObject($result);
+			$pstmt->closeCursor();
+			return $c;
+		}
+		$pstmt->closeCursor();
+		Database::close();
+		return NULL;
+	}
+
 	public function insererNouvelleEntreprise($nomComp)
 	{// inserer une nouvelle Entreprise qui n'existe pas dans la BDD
 		try
