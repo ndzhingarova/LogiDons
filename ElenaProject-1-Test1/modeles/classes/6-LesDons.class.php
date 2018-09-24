@@ -19,6 +19,7 @@ class LesDons {
 	private $id_employe;
 	private $quantite;
 
+
 	public function __construct() { }	
 
 	public function getID()                { return $this->id_don; }	
@@ -51,6 +52,7 @@ class LesDons {
 	public function setPhoto($value)       { $this->photoDon = $value; }
 	public function getMembreID()          { return $this->id_membre; }	
 	public function setMembreId($value)    { $this->id_membre = $value; }
+
 	public function getEmployeID()          { return $this->id_employe; }	
 	public function setEmployeId($value)    { $this->id_employe = $value; }
 	public function getQuantite()          { return $this->quantite; }	
@@ -65,6 +67,7 @@ class LesDons {
 		$this->desc_don         = $x->DESCRIPTION;
 		$this->mode_livraison   = $x->MODE_LIVRAISON;
 		$this->montant_don      = $x->MONTANT;
+
 		$this->datePromesse     = $x->DATE_PROMESSE;
 		$this->datePromise      = $x->DATE_PROMISE;
 		$this->dateAnnulation   = $x->DATE_ANNULATION;
@@ -73,14 +76,13 @@ class LesDons {
 		$this->dateRefu         = $x->DATE_REFUS;
 		$this->photoDon         = $x->PHOTO;
 		$this->id_membre        = $x->MEMBRE_ID;
-
 		$this->id_employe        = $x->EMPLOYE_ID;
 		$this->quantite        = $x->QUANTITE;
+
 	}	
 
 	public function loadFromArray($tab)
 	{
-		
 		$this->id_don           = $tab["ID"];
 		//$this->id_donnateur     = $tab["DONNATEUR_ID"];
 		$this->don_category     = $tab["CATEGORIE_ID"];
@@ -89,6 +91,7 @@ class LesDons {
 		$this->mode_livraison   = $tab["MODE_LIVRAISON"];
 		$this->datePromesse     = $tab["DATE_PROMESSE"];
 		$this->montant_don      = $tab["MONTANT"];
+
 		$this->datePromesse     = $tab["DATE_PROMESSE"];
 		$this->datePromise      = $tab["DATE_PROMISE"];
 		$this->dateAnnulation   = $tab["DATE_ANNULATION"];
@@ -100,6 +103,7 @@ class LesDons {
 
 		$this->id_employe        = $tab["EMPLOYE_ID"];
 		$this->quantite        = $tab["QUANTITE"];
+
 	}
 
 

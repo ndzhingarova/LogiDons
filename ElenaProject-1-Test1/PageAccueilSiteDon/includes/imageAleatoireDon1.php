@@ -1,6 +1,7 @@
 <?php
 
 //TABLEAU IMAGE ALEATOIRE DON1
+
 $descDon1='';
 $imagesDon1 = array(
    /* array('file' => 'don11', 'caption' => $descDon1),
@@ -9,6 +10,7 @@ $imagesDon1 = array(
     array('file' => 'faire2', 'caption' => $descDon1),*/
     array('file' => 'faire4', 'caption' => $descDon1)
    // array('file' => 'faire5', 'caption' => $descDon1)
+
     );
     
     $iDon1 = rand(0, count( $imagesDon1)-1);

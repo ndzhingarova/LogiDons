@@ -3,7 +3,9 @@
     //TABLEAU IMAGE ALEATOIRE DON
     $descDon='offrir sans contrepartie apparente un objet, un bien matériel ou immatériel, de l\'argent,';
     $imagesDon = array(
+
     array('file' => 'don33','caption' => $descDon),
+
 
     );
     

@@ -34,14 +34,16 @@ class MembreDAO
 		{
 			$c = new Membre();
 			$c->loadFromObject($result);
-			//$pstmt->closeCursor();
+			$pstmt->closeCursor();
+			Database::close();
 			return $c;
 		}
 		$pstmt->closeCursor();
 		Database::close();
 		return NULL;
 	}
-	public function findMembreByEmail($courriel)
+
+	public static function findMembreByEmail($courriel)
 	{
 		$db = Database::getInstance();
 
@@ -58,7 +60,7 @@ class MembreDAO
 		}
 		$pstmt->closeCursor();
 		Database::close();
-		return NULL;
+		return null;
 	}
 	public function findEmail($courriel) // utile
 	{// chercher si l'email existe ou pas, la fonction retourne 0 ou 1

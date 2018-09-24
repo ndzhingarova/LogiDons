@@ -10,7 +10,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">Informations Personnelles</div>
                 <div class="panel-body">
-                    <form method="post" action="../controleurs/Controle_CreateUser.php">
+                    <form method="post" action="../controleurs/Controle_CreateMembre.php">
 
                         <div class="form-group">
                             <label class="control-label">Nom</label>
@@ -30,6 +30,11 @@
                         <div class="form-group">
                             <label class="control-label">Mot de passe</label>
                             <input type="password" name="mdp" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="control-label">Telephone</label>
+                            <input type="text" name="tel" class="form-control" required>
                         </div>
 
                         <div class="form-group">

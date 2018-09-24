@@ -1,7 +1,7 @@
 <?php
-
 require_once('../modeles/classes/3-Membre_class.php');
 require_once('../modeles/config/MembreDAO_class.php');
+
 require_once('../modeles/config/Format.php');
 
 // verification si la methode d'envoi est faite par le formulaire
@@ -9,7 +9,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 {
     // recuperation des donnees envoyees
     $format = new Format();
-    $nom        = $format->validation($_POST['nomPrenom']);
+    $nom        = $format->validation($_POST['nom']);
     $courriel   = $format->validation($_POST['courriel']);
     $mdp        = $format->validation($_POST['mdp']);
     $tel        = $format->validation($_POST['tel']);

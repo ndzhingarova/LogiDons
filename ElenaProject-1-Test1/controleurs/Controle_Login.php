@@ -71,6 +71,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                 $nomPage = "la page de connection";   
                 $format->redirect($message, $class, $url, $nomPage);
                }                  
+
         }      
     else // les donnees ne sont pas valides ou il n'existe pas
         {

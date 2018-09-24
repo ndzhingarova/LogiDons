@@ -4,6 +4,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
 
 
+
 <?php
 if (!ISSET($_SESSION))
 {		
@@ -14,11 +15,16 @@ if (!ISSET($_SESSION))
        $_SESSION['userName'] = '';
    }        
 }
+  
+
+
     $pageTitle = "La page Index";    
     include('vues/header.php');
-    include('vues/navBar.php');    
+    include('vues/navBar.php');  
+    include("./PageAccueilSiteDon/pageAccueil.php");  
 ?>
  <div class="container-fluid  " >
+ <h1 class="text-center">La page Accueil</h1>
         <div class="row">
          <!-- ASIDE LEFT -->
             <div class="col-sm-2">
@@ -216,6 +222,7 @@ if (!ISSET($_SESSION))
 <!-- Bootstrap JS -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
     crossorigin="anonymous"></script>
+
 
 
 <script src="ficiers-js/jquery-1.12.1.min.js"></script> 

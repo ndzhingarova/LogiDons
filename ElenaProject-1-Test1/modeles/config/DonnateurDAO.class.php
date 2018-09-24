@@ -46,7 +46,6 @@ class DonnateurDAO
 		Database::close();
 		return NULL;
 	}
-
 	public function insererNouvelleEntreprise($nomComp)
 	{// inserer une nouvelle Entreprise qui n'existe pas dans la BDD
 		try

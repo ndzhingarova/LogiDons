@@ -49,7 +49,10 @@
 				                 </ul>
 				                 <ul class='nav navbar-nav navbar-right'> 
 					                <li><a href='".$chemin."RechercheDon.php'><span class='glyphicon glyphicon-user'></span>Modifier un Don</a></li> 
-				                 </ul>";
+								 </ul>
+								 <ul class='nav navbar-nav navbar-right'> 
+								 <li><a href='".$chemin."OffrirDisponibilite.php'><span class='glyphicon glyphicon-user'></span>Offrir ses disponibilite</a></li> 
+							  </ul>";
 						}
                     else
                         {
@@ -59,7 +62,7 @@
 												   ria-expanded='false'>".$_SESSION['userName']."<span class='caret'></span>
 										</a>
 										<ul class='dropdown-menu'>
-											
+											<li><a href='#'>Modifier profile </a></li>
 											<li><a href='".$cheminLogout."controleurs/Controle_logout.php'>LogOut</a></li>
 										</ul>
 									</li>

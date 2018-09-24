@@ -10,7 +10,6 @@
 //Import PHPMailer classes into the global namespace
 use PHPMailer\PHPMailer\PHPMailer;
 class OutilCourriel {
-
     public static function envoyer($courriel, $nomRecipient, $subject, $message){
  
 echo (extension_loaded('openssl')?'SSL loaded':'SSL not loaded')."\n"; 
@@ -62,11 +61,13 @@ $mail->addReplyTo('anotheroneniki@gmail.com', 'LogiDons');
 $mail->addAddress($courriel, $nomRecipient);
 //Set the subject line
 $mail->Subject = $subject;
+
 //Read an HTML message body from an external file, convert referenced images to embedded,
 //convert HTML into a basic plain-text alternative body
 //$mail->msgHTML(file_get_contents('../contents.html'), __DIR__);
 //Replace the plain text body with one created manually
 $mail->Body = $message;
+
 //Attach an image file
 //$mail->addAttachment('c:/Users/Public/Pictures/Sample Pictures/Tulips.jpg');
 //send the message, check for errors
@@ -95,7 +96,5 @@ function save_mail($mail)
     $result = imap_append($imapStream, $path, $mail->getSentMIMEMessage());
     imap_close($imapStream);
     return $result;
-}
-
-   
+}   
 }

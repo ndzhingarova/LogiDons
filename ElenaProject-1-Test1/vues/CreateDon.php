@@ -37,17 +37,20 @@ if (!ISSET($_SESSION))
                         <!-- ----------- Fin Div Compagnie --------------------------------------- -->                  
                                           <div class="form-group">
                                              <label class="control-label"><span id="nomContact">Nom du donateur</span></label>
-                                             <input type="text" name="nomDontr" class="form-control" autocomplete="off" required >                                             
+                                             <input type="text" name="nomDontr" id="nomDonateur" class="form-control" autocomplete="off" onkeyup="validateNames('nomDonateur','nomDonateurFeedback')" required >  
+                                             <div id="nomDonateurFeedback"></div>                                           
                                           </div>
                         <!-- ------------------------------------------------------------------- -->                  
                                           <div class="form-group">
                                              <label class="control-label">Email</label>
-                                             <input type="email" name="courriel" class="form-control" autocomplete="off" required >
+                                             <input type="email" name="courriel" id="email" class="form-control" autocomplete="off" onkeyup="validateEmail('email','emailFeedback')" required >
+                                             <div id="emailFeedback"></div> 
                                           </div>
                         <!-- ------------------------------------------------------------------- -->                  
                                           <div class="form-group">
                                              <label class="control-label">Telephone</label>
-                                             <input type="text" name="tel" class="form-control" autocomplete="off" required >
+                                             <input type="text" name="tel" id="telephone" class="form-control" autocomplete="off" onkeyup="validatePhone('telephone','telephoneFeedback')" required >
+                                             <div id="telephoneFeedback"></div>
                                           </div> 
                         <!-- ------------------------------------------------------------------- -->
                                           <div class="adresseDonateur form-group form-group-lg">
@@ -55,7 +58,8 @@ if (!ISSET($_SESSION))
                                             <div class="divAdresse">                                               
                                                 <span>adresse      </span> <input type="text" name="adresse" autocomplete="off" required ><br>
                                                 <span>ville        </span> <input type="text" name="ville" autocomplete="off" required ><br>
-                                                <span>code postale </span> <input type="text" name="codePostale"autocomplete="off" required ><br>
+                                                <span>code postale </span> <input type="text" name="codePostale" id="codePostal" autocomplete="off" onkeyup="validatePostalCode('codePostal','codePostalFeedback')" required >
+                                                <div id="codePostalFeedback"></div><br>
                                                 <span>province</span>
                                                 <select name="province" required>
                                                     <option value="Alberta">Alberta</option><option value="Colombie-Britannique">Colombie-Britannique</option>
@@ -154,6 +158,7 @@ if (!ISSET($_SESSION))
                 </div><!--end div panel heading -->
             </div><!--end div panel default -->
         </div><!--end div container -->
+        <script type="text/javascript" src = "../ficiers-js/form_validation.js"></script><!-- Form validation -->
 <script>
    $(document).ready(function()
     {
