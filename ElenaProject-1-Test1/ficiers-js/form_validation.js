@@ -41,8 +41,8 @@ function validateEmail(in_,inmsg)
         if(regex.test(txt) == true)
         {
             document.getElementById(in_).setAttribute("class","form-control alert alert-success");
-            document.getElementById(inmsg).innerHTML = "format respecte";   
-            document.getElementById(inmsg).class = "alert alert-success";   
+            document.getElementById(inmsg).innerHTML = "format respecte";  
+            document.getElementById(inmsg).setAttribute("alert alert-success"); 
         }
         else
         {
@@ -59,8 +59,8 @@ function validatePhone(in_,inmsg)
         if(regex.test(txt) == true)
         {
             document.getElementById(in_).setAttribute("class","form-control is-valid");
-            document.getElementById(inmsg).innerHTML = "format respecte";   
-            document.getElementById(inmsg).class = "alert alert-success";   
+            document.getElementById(inmsg).innerHTML = "format respecte";  
+            document.getElementById(inmsg).setAttribute("class","alert alert-success");
         }
         else
         {
