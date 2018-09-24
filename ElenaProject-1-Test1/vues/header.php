@@ -17,6 +17,7 @@ else
     <link rel="stylesheet" href="<?php echo $cheminCSS ?>Page-damin.CSS.css">
     <link rel="stylesheet" href="<?php echo $cheminCSS ?>PageMembres.CSS.css">
     <link rel="stylesheet" href="<?php echo $cheminCSS ?>CreateDonCSS.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
 </head>
 <body>
 
