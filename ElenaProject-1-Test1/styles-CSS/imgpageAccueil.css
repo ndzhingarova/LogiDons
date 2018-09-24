@@ -1,0 +1,22 @@
+#imageHeader{
+    background-image: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full page/img(10).jpg");
+    /* Control the height of the image */
+    min-height: 800px;
+    /*-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 
+    filter: grayscale(100%);*/
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; 
+} 
+
+
+.container-fluid header  {
+
+    color: aliceblue;
+}
+
+.container-fluid  section {
+
+    color: aliceblue;
+}
