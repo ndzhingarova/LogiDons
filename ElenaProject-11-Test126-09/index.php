@@ -4,7 +4,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
 
 
-
 <?php
 if (!ISSET($_SESSION))
 {		
@@ -15,16 +14,11 @@ if (!ISSET($_SESSION))
        $_SESSION['userName'] = '';
    }        
 }
-  
-
-
     $pageTitle = "La page Index";    
     include('vues/header.php');
-    include('vues/navBar.php');  
-    include("./PageAccueilSiteDon/pageAccueil.php");  
+    include('vues/navBar.php');    
 ?>
  <div class="container-fluid  " >
- <h1 class="text-center">La page Accueil</h1>
         <div class="row">
          <!-- ASIDE LEFT -->
             <div class="col-sm-2">
@@ -134,8 +128,7 @@ if (!ISSET($_SESSION))
                 <div id="logo" class="row">
             <div  class="col-md-12">
                 <header >
-                <a href="" data-toggle="modal" data-target=".modal-merci"><h1 align="center" class="text-warning" ><strong>FONDATION COEUR-ESPOIR</strong> </h1></a>
-                    
+               <h1 align="center" class="text-warning" ><strong>FONDATION COEUR-ESPOIR</strong> </h1>            
                 </header>
             </div>
         </div>
@@ -146,7 +139,8 @@ if (!ISSET($_SESSION))
                                     <?php 
                                         require_once('./PageAccueilSiteDon/includes/imageAleatoireDon.php');
                                         if (isset($imageSize)) { ?> 
-                                            <img src="<?php echo  $selectedImageDon ;  ?>" alt="image aléatoire"  class="img-fluid "<?php echo $imageSize[0]; ?>>                                   
+                                        <marquee behavior="" direction="right"> <img src="<?php echo  $selectedImageDon ;  ?>" alt="image aléatoire"  class="img-fluid "<?php echo $imageSize[0]; ?>>  </marquee>
+                                                                            
                                            
                                     <?php }?>                                 
                                 </div>
@@ -210,6 +204,28 @@ if (!ISSET($_SESSION))
                     </aside>
                 </div>
         </div>
+        <div class="row">
+            <div class= "col-lg-12">
+                <!-- Footer -->
+<footer class="page-footer font-small blue pt-4 bg-dark" >
+<!-- Footer Links -->
+<div class="container-fluid text-center text-md-left">
+  <!-- Grid row -->
+  <div class="row">
+    <!-- Grid column -->
+    <div class="col-md-6 mt-md-0 mt-3">
+      <!-- Content -->
+      <h5 class="text-uppercase text-warning">  <a href="" data-toggle="modal" data-target=".modal-merci"><strong>nos valeurs</strong> </a></h4>
+    </div>
+<!-- Copyright -->
+<div class="footer-copyright text-center text-info py-3">© 2018 Copyright:
+  
+</div>
+<!-- Copyright -->
+</footer>
+<!-- Footer -->
+            </div>
+        </div>
     </div>
     
 
@@ -222,7 +238,6 @@ if (!ISSET($_SESSION))
 <!-- Bootstrap JS -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
     crossorigin="anonymous"></script>
-
 
 
 <script src="ficiers-js/jquery-1.12.1.min.js"></script> 

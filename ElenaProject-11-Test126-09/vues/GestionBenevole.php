@@ -29,7 +29,8 @@ $tab_Benevoles = $membreDao->findMembreByEmail($benevole);
     <div class="container" ng-app>
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h2> BIENVENUE <span class="text-info"><?php echo $tab_Benevoles->getNom(); ?></span></h2>
+            <marquee behavior="" direction="left"> <h2> BIENVENUE <span class="text-info"><?php echo $tab_Benevoles->getNom(); ?></span></h2></marquee>
+               
             </div>
                  <!-- Table -->
             <div class="panel-body">
